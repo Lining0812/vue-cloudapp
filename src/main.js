@@ -1,6 +1,7 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+// 使用路由
+import router from './routers/index'
+
+createApp(App).use(router).mount('#app')
