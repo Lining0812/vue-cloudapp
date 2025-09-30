@@ -39,7 +39,7 @@
   button p::before {
     position: absolute;
     /*   box-sizing: border-box; */
-    content: "Subscribe";
+    content: "微博";
     width: 0%;
     inset: 0;
     color: var(--hovered-color);
