@@ -14,6 +14,7 @@
     position: relative;
     width: 300px;
     height: 200px;
+    margin:10px;
     background-color: #f2f2f2;
     border-radius: 10px;
     display: flex;
@@ -22,14 +23,14 @@
     overflow: hidden;
     perspective: 1000px;
     box-shadow: 0 0 0 5px #ffffff80;
-    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .card:hover {
@@ -48,7 +49,7 @@
     background-color: #f2f2f2;
     transform: rotateX(-90deg);
     transform-origin: bottom;
-    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .card:hover .card__content {

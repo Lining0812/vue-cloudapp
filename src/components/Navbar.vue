@@ -1,14 +1,15 @@
 <template>
     <div class="navbar">
         <div class="logo">
-            <span>Cloud App</span>
+            <h1>Cloud App</h1>
         </div>
             <ul class="nav_links">
-                <li><a href="#">主页|Home</a></li>
-                <li><a href="#">专辑|Album</a></li>
-                <li><a href="#">演唱会|Concert</a></li>
+                <li><RouterLink to="/">主页|Home</RouterLink></li>
+                <li><RouterLink to="/album">专辑|Album</RouterLink></li>
+                <li><RouterLink to="/concert">演唱会|Concert</RouterLink></li>
+                <li><RouterLink to="/albumInfo">起源|Origins</RouterLink></li>
             </ul>
-        <button>Click Me</button>
+        <div></div>
     </div>
 </template>
 
@@ -17,13 +18,17 @@
 </script>
 
 <style>
-/* *{
+*{
     margin: 0;
     padding: 0;
-} */
+    box-sizing: border-box;
+} 
 
 .navbar{
+    width: 100%;
+    padding: 24px;
     background-color: aqua;
+    margin-bottom: 2rem;
 
     display: flex;
     justify-content: space-between;
@@ -48,6 +53,12 @@
 
 .nav_links li a:hover{
     color: red;
+}
+
+.nav_links li a.router-link-active,
+.nav_links li a.router-link-exact-active {
+    color: #4361ee;
+    font-weight: 600;
 }
 
 </style>
