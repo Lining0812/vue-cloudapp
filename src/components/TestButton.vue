@@ -1,84 +1,45 @@
+<template>
+    <button>
+      Button
+    </button>
+</template>
+
+<script>
+export default{
+  name:"btncomponent"
+}
+</script>
+
 <style scoped>
   button {
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-
-  button {
-    --primary-color: #111;
-    --hovered-color: #c84747;
-    position: relative;
-    display: flex;
-    font-weight: 600;
-    font-size: 20px;
-    gap: 0.5rem;
     align-items: center;
+    background-color: transparent;
+    color: #000000;
+    cursor: pointer;
+    display: flex;
+    font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    text-transform: uppercase;
+    outline: 0;
+    border: 0;
+    padding: 1rem;
   }
 
-  button p {
-    margin: 0;
-    position: relative;
-    font-size: 20px;
-    color: var(--primary-color);
-  }
-
-  button::after {
-    position: absolute;
+  button:before {
+    background-color: #000000;
     content: "";
+    display: inline-block;
+    height: 1px;
+    margin-right: 10px;
+    transition: all .42s cubic-bezier(.25,.8,.25,1);
     width: 0;
-    left: 0;
-    bottom: -7px;
-    background: var(--hovered-color);
-    height: 2px;
-    transition: 0.3s ease-out;
   }
 
-  button p::before {
-    position: absolute;
-    /*   box-sizing: border-box; */
-    content: "微博";
-    width: 0%;
-    inset: 0;
-    color: var(--hovered-color);
-    overflow: hidden;
-    transition: 0.3s ease-out;
-  }
-
-  button:hover::after {
-    width: 100%;
-  }
-
-  button:hover p::before {
-    width: 100%;
-  }
-
-  button:hover svg {
-    transform: translateX(4px);
-    color: var(--hovered-color);
-  }
-
-  .weibo-icon {
-    color: var(--primary-color);
-    transition: 0.2s;
-    position: relative;
-    width: 24px;
-    height: 24px;
-    transition-delay: 0.2s;
+  button:hover:before {
+    background-color: #000000;
+    width: 3rem;
   }
 </style>
-
-<template>
-  <button>
-    <p>微博</p>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="weibo-icon"
-      viewBox="0 0 1024 1024"
-    >
-      <path d="M726.64 470.78c-34.78-6.72-17.845-25.088-17.845-25.088s34.023-55.406-6.805-95.73c-50.5-49.878-173.429 6.276-173.429 6.276-46.877 14.333-34.478-6.572-27.824-42.116 0-41.965-14.518-112.899-139.563-71.084-124.894 42.263-232.1 189.958-232.1 189.958-74.54 98.118-64.713 173.983-64.713 173.983 18.596 167.562 198.984 213.557 339.303 224.462C551.24 842.79 750.53 781.259 810.857 654.619c60.486-126.791-49.29-176.97-84.217-183.838zM414.55 784.249c-146.518 6.718-265.061-65.71-265.061-162.184 0-96.624 118.543-173.984 265.061-180.706 146.669-6.718 265.364 53.018 265.364 149.342 0 96.327-118.695 186.976-265.364 193.548zM385.367 504.83c-147.425 17.023-130.338 153.224-130.338 153.224s-1.51 43.16 39.467 65.114c86.183 46.145 175.093 18.216 219.849-38.98 44.907-57.047 18.6-196.235-128.978-179.358zM348.17 696.138c-27.516 3.135-49.743-12.547-49.743-35.248 0-22.55 19.654-46.296 47.173-49.13 31.604-2.99 52.167 14.934 52.167 37.782 0.151 22.55-22.228 43.46-49.597 46.596z m86.946-73.03c-9.377 6.87-20.866 5.975-25.707-2.388-5.141-8.067-3.175-20.91 6.2-27.628 10.886-8.067 22.228-5.674 27.217 2.388 4.841 8.067 1.36 20.458-7.71 27.628zM798.459 411.79c11.946 0 21.927-8.66 23.74-20.008 0.153-0.897 0.3-1.645 0.3-2.542 17.997-159.646-132.605-132.165-132.605-132.165-13.306 0-24.04 10.6-24.04 24.042 0 13.144 10.734 23.748 24.04 23.748 108.112-23.598 84.375 83.18 84.375 83.18-0.152 13.144 10.733 23.745 24.19 23.745z m-17.54-278.671c-52.013-12.096-105.693-1.64-120.662 1.195-1.21 0.15-2.266 1.198-3.323 1.344-0.457 0.151-0.908 0.597-0.908 0.597-14.818 4.185-25.555 17.624-25.555 33.603 0 18.968 15.573 34.646 35.078 34.646 0 0 18.9-2.538 31.756-7.466 12.699-5.076 120.657-3.732 174.185 84.976 29.186 64.813 12.856 108.123 10.737 115.141 0 0-6.954 16.877-6.954 33.452 0 19.115 15.574 31.215 35.078 31.215 16.18 0 29.786-2.243 33.718-29.273h0.152c57.761-189.215-70.16-278.072-163.302-299.43z m0 0" fill="currentColor"></path>
-        </svg>
-  </button>
-</template>
