@@ -60,6 +60,8 @@
 .tracklist li{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    border-bottom: 3px;
+    border-color: black;
 }
 
 </style>

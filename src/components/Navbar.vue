@@ -8,6 +8,7 @@
                 <li><RouterLink to="/album">专辑|Album</RouterLink></li>
                 <li><RouterLink to="/concert">演唱会|Concert</RouterLink></li>
                 <li><RouterLink to="/albumInfo">起源|Origins</RouterLink></li>
+                <li><RouterLink to="/dynamic/30">动态路由</RouterLink></li>
             </ul>
         <div></div>
     </div>
