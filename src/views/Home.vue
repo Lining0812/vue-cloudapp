@@ -1,52 +1,44 @@
 <template>
     <h1>Home</h1>
-
-    <div class="container">
-        <div class="box1">
-            <h2>Box1</h2>
-        </div>
-        <div class="box2">
-            <h2>Box2</h2>
-        </div>
-        <div class="box3">
-            <h2>Box3</h2>
+    <div class="main">
+        <div class="container">
+            <div class="card">
+                <div class="image">
+                    <img src="/src/assets/test.jpg"></img>
+                </div>
+                <div class="title">
+                    <span>我是一个标题</span>
+                </div>
+            </div>
         </div>
     </div>
-
-
 </template>
 
 <style>
+.main{
+    width: 100%;
+    padding: 0 60px;
+    box-sizing: border-box;
+}
+
 .container{
-    height: 700px;
-    background-color: azure;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 20px;
+    width: 100%;
+    background-color: beige;
+}
+
+.card{
+    background-color: aqua;
+}
+
+.image{
     position: relative;
-    display: flex;
+    border-radius: 6px;
+    overflow:hidden;
 }
 
-.box1{
-    width: 200px;
-    height: 200px;
-    background-color: aquamarine;
-    position: relative;
-    top: 100px;
-    left: 50px;
-}
-
-.box2{
-    width: 200px;
-    height: 200px;
-    background-color:blue;
-    position: absolute;
-    top: 200px;
-    left: 100px;
-}
-
-.box3{
-    width: 200px;
-    height: 200px;
-    background-color:red;
-}
 </style>
 
 <script>
