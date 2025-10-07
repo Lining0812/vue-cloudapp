@@ -12,11 +12,13 @@ const apiClient = axios.create({
 
 export default {
     // 获取所有专辑
-    getAlbums(){
-        return apiClient.get('/alubms')
+    async getAlbums(){
+        const response = await apiClient.get('/api/Album/GetAllAlbums');
+        return response.data;
     },
     // 根据id获取专辑
-    getAlbumById(id) {
-    return apiClient.get(`/alubms/${id}`)
-  }
+    async getTracksByAlbumId(id) {
+        const response = await apiClient.get(`/api/Track/GetTracksByAlbumId/${id}`)
+        return response.data
+    }
 }

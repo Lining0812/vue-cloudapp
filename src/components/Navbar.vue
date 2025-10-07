@@ -34,6 +34,10 @@ const routes = [
         name:"origins",
         title:"起源|Origins",
     },
+    {
+        name:"test",
+        title:"测试|test",
+    },
 ]
 </script>
 

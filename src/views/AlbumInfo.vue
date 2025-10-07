@@ -21,7 +21,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import albumApi from '@/services/albumApi'
 
 const props = defineProps({
     id:{
@@ -67,6 +68,15 @@ const currentAlbum = computed(() => {
     // 注意：props.id是字符串类型，需要转成数字才能和albumdata中的id（数字类型）匹配
     return albumdata.find(item => item.id === Number(props.id))
 })
+
+const t_album = ref([])
+
+onMounted(
+    ()=>{
+        t_album.value = albumApi.getAlbumById(id)
+    }
+)
+
 </script>
 
 <style>
