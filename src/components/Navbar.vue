@@ -1,21 +1,40 @@
 <template>
-    <div class="navbar">
+    <nav class="navbar">
+        <!-- Logo -->
         <div class="logo">
             <h1>Cloud App</h1>
         </div>
-            <ul class="nav_links">
-                <li><RouterLink to="/">主页|Home</RouterLink></li>
-                <li><RouterLink to="/album">专辑|Album</RouterLink></li>
-                <li><RouterLink to="/concert">演唱会|Concert</RouterLink></li>
-                <li><RouterLink to="/albumInfo">起源|Origins</RouterLink></li>
-                <li><RouterLink to="/dynamic/30">动态路由</RouterLink></li>
-            </ul>
-        <div></div>
-    </div>
+
+        <!-- 导航栏 -->
+        <ul class="nav_links">
+            <li v-for="(route,index) in routes" :key="index">
+                <router-link :to="{name:route.name}">{{ route.title }}</router-link>
+            </li>
+        </ul>
+
+    </nav>
 </template>
 
-<script>
+<script setup>
 
+const routes = [
+    {
+        name:"home",
+        title:"主页|Home",
+    },
+    {
+        name:"albumlist",
+        title:"专辑|Album",
+    },
+        {
+        name:"concertlist",
+        title:"演唱会|Concert",
+    },
+    {
+        name:"origins",
+        title:"起源|Origins",
+    },
+]
 </script>
 
 <style>
@@ -42,6 +61,7 @@
     list-style: none; /*去除列表样式*/
     display: flex;
     gap: 2rem; /*间距*/
+    margin: 0 auto;
 }
 
 .nav_links li a{

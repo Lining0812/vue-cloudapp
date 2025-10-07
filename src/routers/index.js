@@ -1,43 +1,43 @@
 import { createRouter,createWebHistory } from 'vue-router'
 
-import HomeView from '@/views/Home.vue'
-import AlbumList from '@/views/AlbumList.vue'
-import AlbumInfo from '@/views/AlbumInfo.vue'
-import ConcertList from '@/views/ConcertList.vue'
-
-const router = createRouter(
-    {
-        // 历史模式
-        history: createWebHistory(),
-        routes:[
+// 配置路由和视图的对应关系
+const routes = [
             {
                 name:"home",
-                path:"/",
-                component:HomeView
+                path:"/", // http://localhost:5173/
+                component:()=>import('@/views/Home.vue'),
             },
             {
                 name:"albumlist",
-                path:'/album',
-                component:AlbumList
+                path:'/albums', // http://localhost:5173/albums
+                component:()=>import('@/views/AlbumList.vue'),
             },
             {
                 name:"albuminfo",
-                path:'/albuminfo',
-                component:AlbumInfo
+                path:'/album/:id',
+                component:()=>import('@/views/AlbumInfo.vue'),
+                props:true,
             },
             {
                 name:'concertlist',
-                path:'/concert',
-                component:ConcertList
+                path:'/concerts', // http://localhost:5173/concert
+                component:()=>import('@/views/ConcertList.vue'),
             },
             {
-                name:'dynamicroute',
-                path:'/dynamic/:id',
-                component:()=>import('@/views/Dynamic.vue'),
-                props:true
+                name:'origins',
+                path:'/origins', // http://localhost:5173/origins
+                component:()=>import('@/views/Origins.vue')
             },
         ]
+
+// 创建路由实例
+const router = createRouter(
+    {
+        // 历史模式有两种可选
+        history: createWebHistory(),
+        routes,
     }
 )
 
+// 导出路由实例
 export default router

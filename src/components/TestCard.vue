@@ -1,13 +1,16 @@
 <template>
     <div class="card">
-      <img src="@/assets/test.jpg" alt="测试图片" class="card__image">
+      <img src="@/assets/test2.jpg" alt="测试图片" class="card__image">
       <div class="card__content">
-        <p class="card__title">《宇宙无敌号》-宁波站</p>
-        <p class="card__description">aaaaaaaaaaaaaaaaaaa</p>
+        <p class="card__title">宇宙无敌号演唱会</p>
+        <p class="card__description">宇宙无敌号开向全世界</p>
       </div>
     </div>
 </template>
 
+<script setup>
+
+</script>
 
 <style scoped>
   .card {

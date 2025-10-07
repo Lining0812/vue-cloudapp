@@ -4,57 +4,34 @@
     </div>
 
     <div class="albumlist">
-        <cardcomponent/>
-        <cardcomponent/>
-        <cardcomponent/>
-        <cardcomponent/>
-        <cardcomponent/>
+        <AlbumCard v-for="album in testalbumlist" 
+        :key="album.id" 
+        :album="album"/>
     </div>
-
-    <ul>
-        <li v-for="(item,index) in value" :key="index">{{ item.专辑名 }}</li>
-    </ul>
-    <button @click="getData">获取数据</button>
-    <btncomponent/>
 </template>
 
-<script>
-import instance from '@/axios/index'
+<script setup>
 
-import cardcomponent from '@/components/TestCard.vue'
-import btncomponent from '@/components/TestButton.vue'
+import AlbumCard from '@/components/AlbumCard.vue'
+import { ref } from 'vue'
 
-export default{
-    data(){
-        return{
-            value:null,
-        }
-    },
-    methods:{
-        async getData(){
-            try {
-                const response = await instance.get('/api/Album/GetAllAlbums');
-                this.value = response.data;
-                console.log('请求成功:', this.value);
-            } catch (error) {
-                console.error('请求失败:', error);
-                this.value = { error: '数据加载失败' };
-            }
-        }
-    },
-    components:{
-        cardcomponent,
-        btncomponent,
-    }
-}
+const testalbumlist = ref([
+    {id:1,title:'没语季节',description:'个人首张专辑'},
+    {id:2,title:'没语季节2',description:'个人第二张专辑'},
+    {id:3,title:'没语季节3',description:'个人第三张专辑'},
+    {id:4,title:'没语季节4',description:'个人第四张专辑'},
+    {id:5,title:'没语季节5',description:'个人第五张专辑'},
+]);
 </script>
 
 <style>
 
 .albumlist{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    margin: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 2rem;
+
 }
 
 </style>
