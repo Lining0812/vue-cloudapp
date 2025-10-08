@@ -11,12 +11,10 @@
                 <router-link :to="{name:route.name}">{{ route.title }}</router-link>
             </li>
         </ul>
-
     </nav>
 </template>
 
 <script setup>
-
 const routes = [
     {
         name:"home",
@@ -42,25 +40,28 @@ const routes = [
 </script>
 
 <style>
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} 
-
 .navbar{
     width: 100%;
-    padding: 24px;
-    background-color: aqua;
+    height: 70px;
+    padding: 20px 100px;
+    background-color: transparent;
     margin-bottom: 2rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.logo{
 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
+
+.logo{
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
 .nav_links{
     list-style: none; /*去除列表样式*/
     display: flex;
@@ -69,21 +70,20 @@ const routes = [
 }
 
 .nav_links li a{
-    position: relative;
     font-size: 1.05rem;
     font-weight: 500;
     text-decoration: none; /*去除下划线*/
-    color: black;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .nav_links li a:hover{
-    color: red;
+    color: #f56ff7;
 }
 
 .nav_links li a.router-link-active,
 .nav_links li a.router-link-exact-active {
-    color: #4361ee;
+    color: #f56ff7;
     font-weight: 600;
 }
-
 </style>

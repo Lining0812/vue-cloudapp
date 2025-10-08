@@ -36,7 +36,7 @@ const routes = [
             {
                 name:'dytest',
                 path:'/test/:id', // http://localhost:5173/test/:id
-                component:()=>import('@/views/dytest.vue'),
+                component:()=>import('@/views/Dytest.vue'),
                 props:true,
             },
         ]

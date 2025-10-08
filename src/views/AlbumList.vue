@@ -1,12 +1,14 @@
 <template>
-    <div style="text-align: center;color: #121212; margin-bottom: 2rem;">
-        <h1>Album</h1>
-    </div>
+    <div class="album">
+        <div style="text-align: center;color: #121212; margin-bottom: 2rem;">
+            <h1>Album</h1>
+        </div>
 
-    <div class="albumlist">
-        <AlbumCard v-for="album in testalbumlist" 
-        :key="album.id" 
-        :album="album"/>
+        <div class="albumlist">
+            <AlbumCard v-for="album in testalbumlist" 
+            :key="album.id" 
+            :album="album"/>
+        </div>
     </div>
 </template>
 
@@ -25,6 +27,11 @@ const testalbumlist = ref([
 </script>
 
 <style>
+
+.album{
+    position: absolute;
+    top: 100px;
+}
 
 .albumlist{
     margin: 0 2rem;
