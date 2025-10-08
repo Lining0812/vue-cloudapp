@@ -20,11 +20,6 @@ import cardcomponent from '@/components/TestCard.vue'
 </script>
 
 <style>
-.concert{
-    position: absolute;
-    top: 100px;
-}
-
 .concertlist{
     display: flex;
     justify-content: space-evenly;

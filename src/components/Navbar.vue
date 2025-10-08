@@ -78,12 +78,12 @@ const routes = [
 }
 
 .nav_links li a:hover{
-    color: #f56ff7;
+    color: var(--color-hover);
 }
 
 .nav_links li a.router-link-active,
 .nav_links li a.router-link-exact-active {
-    color: #f56ff7;
+    color: var(--color-hover);
     font-weight: 600;
 }
 </style>

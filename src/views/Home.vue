@@ -17,7 +17,9 @@
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    position: relative
+    position: relative;
+
+    margin-top: -100px;
 }
 
 .banner img{
@@ -40,6 +42,6 @@
 }
 </style>
 
-<script>
-
+<script setup>
+import Navbar from '@/components/Navbar.vue';
 </script>

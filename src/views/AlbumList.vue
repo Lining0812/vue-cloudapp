@@ -28,11 +28,6 @@ const testalbumlist = ref([
 
 <style>
 
-.album{
-    position: absolute;
-    top: 100px;
-}
-
 .albumlist{
     margin: 0 2rem;
     display: grid;
