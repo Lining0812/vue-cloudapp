@@ -3,6 +3,7 @@
         <img src="../assets/test.jpg" alt="背景"/>
         <div class="content">
             <h1>黄霄雲</h1>
+            <h2>Ghost Huang</h2>
             <p>黄霄雲，1998年12月22日出生于贵州省黔南布依族苗族自治州，中国内地流行乐女歌手、影视演员，毕业于中央音乐学院。</p>
         </div>
     </div>

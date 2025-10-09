@@ -1,9 +1,11 @@
 <template>
-    <h1 style="text-align: center;">起源</h1>
-    <div class="card" v-for="(data,index) in datas" :key="index">
-        <div class="content">
-            <p>{{ data.title }}</p>
-            <p>{{ data.dec }}</p>
+    <div class="origins">
+        <h1 style="text-align: center;">起源</h1>
+        <div class="card" v-for="(data,index) in datas" :key="index">
+            <div class="content">
+                <p>{{ data.title }}</p>
+                <p>{{ data.dec }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -28,11 +30,11 @@ const datas = ref([
 </script>
 
 <style>
-
 .card{
     width: 100vw;
     height: 100vh;
     background-color: beige;
+    
     display: flex;
     justify-content: center;
     align-items: center;

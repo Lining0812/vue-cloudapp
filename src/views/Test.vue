@@ -24,9 +24,9 @@
 </template>
  
 <script setup>
+import albumApi from '@/services/albumApi'
 
 import { ref,onMounted } from 'vue';
-import albumApi from '@/services/albumApi'
 
 const t_album = ref([])
 const t_track = ref([])
@@ -48,5 +48,4 @@ onMounted(
 </script>
 
 <style>
-
 </style>
