@@ -4,9 +4,9 @@ const Api_Base_Url = "https://localhost:7066";
 const apiClient = axios.create({
     baseURL:Api_Base_Url,
     timeout:3000,
-    headers:{
-        "Content-Type":"application/json"
-    }
+    // headers:{
+    //     "Content-Type":"application/json"
+    // }
 });
 
 // 通用错误处理函数
@@ -51,7 +51,7 @@ export default {
             // 创建一个新的axios实例用于文件上传，不设置Content-Type以允许浏览器自动处理
             const UploadClient = axios.create({
                 baseURL: Api_Base_Url,
-                timeout: 3000
+                timeout: 3000,
             });
             
             // 构建FormData对象

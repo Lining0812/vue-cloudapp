@@ -52,7 +52,7 @@ const formFields = ref([
       id: 'releaseDate',
       name: 'ReleaseDate',
       modelKey: 'releaseDate',
-      type: 'date',
+      type: 'Date',
       label: '发行日期',
       placeholder: '发行日期'
     },
@@ -78,6 +78,8 @@ const router = useRouter();
     
 const handleSubmit = async () => {
   const result = await albumApi.addAlbum(formData);
+  console.log(result);
+  router.push({name:'albuminfo',params:{id:result.data}});
 };
 
 // 重置表单

@@ -33,8 +33,6 @@
     height: 100%;
 }
 
-
-
 .content{
     position: relative;
     z-index: 10;
