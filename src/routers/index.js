@@ -39,6 +39,11 @@ const routes = [
                 component:()=>import('@/views/Dytest.vue'),
                 props:true,
             },
+            {
+                name:'testupload',
+                path:'/testupload', // http://localhost:5173/testupload
+                component:()=>import('@/views/TestUpload.vue'),
+            },
         ]
 
 // 创建路由实例

@@ -1,6 +1,7 @@
 <template>
     <div class="banner">
         <img src="../assets/test.jpg" alt="背景"/>
+        <!-- <video src="../assets/MangXuan.mp4" muted loop autoplay></video> -->
         <div class="content">
             <h1>黄霄雲</h1>
             <h2>Ghost Huang</h2>
@@ -32,6 +33,8 @@
     height: 100%;
 }
 
+
+
 .content{
     position: relative;
     z-index: 10;
@@ -44,5 +47,4 @@
 </style>
 
 <script setup>
-import Navbar from '@/components/Navbar.vue';
 </script>

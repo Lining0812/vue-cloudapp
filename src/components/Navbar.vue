@@ -34,6 +34,10 @@ const routes = [
         name:"test",
         title:"测试|test",
     },
+    {
+        name:"testupload",
+        title:"testupload",
+    },
 ]
 </script>
 
