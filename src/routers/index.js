@@ -44,6 +44,11 @@ const routes = [
                 path:'/testupload', // http://localhost:5173/testupload
                 component:()=>import('@/views/TestUpload.vue'),
             },
+            {
+                path: '/:pathMatch(.*)*', // 这是Vue 3中捕获所有路由的写法
+                name: 'NotFound',
+                component: ()=>import('@/views/NotFound.vue')
+            }
         ]
 
 // 创建路由实例

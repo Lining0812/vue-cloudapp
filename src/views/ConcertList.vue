@@ -32,19 +32,22 @@ const datas = ref([
     url:'src/assets/test.jpg'
     },
 ])
+
 </script>
 
 <style>
 .concerts{
     margin-top: -100px;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
 }
-
 
 .concertcard{
     width: 100%;
     height: 100vh;
 
     background-color: blanchedalmond;
+    scroll-snap-align: start;
 }
 
 .card_content{
@@ -82,5 +85,4 @@ const datas = ref([
     color: white;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
-
 </style>

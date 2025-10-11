@@ -6,41 +6,79 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <div class="box">
-
+    <h1>实际应用：创建可翻转的卡片</h1>
+    <div class="card-container">
+        <div class="card-3d" id="flipCard">
+            <div class="card-front">
+                <i class="fas fa-credit-card" style="font-size: 40px; margin-bottom: 10px;"></i>
+                <h3>信用卡正面</h3>
+                <p>1234 5678 9012 3456</p>
+            </div>
+            <div class="card-back">
+                <i class="fas fa-university" style="font-size: 40px; margin-bottom: 10px;"></i>
+                <h3>信用卡背面</h3>
+                <p>CVV: 123</p>
+            </div>
         </div>
     </div>
+
 </body>
 
 <style>
-    body{
+    *{
         margin: 0px;
         padding: 0px;
         box-sizing: border-box;
     }
 
-    .container{
-        width: 200px;
-        margin: 0 auto;
-        
-        /* 必须设置的两个属性 */
-        /* 设置为3D变换 */
+    h1{
+        text-align: center;
+    }
+
+    .card-container{
+        perspective: 800px;
+        width: 450px;
+        height: 300px;
+        margin: 20px auto;
+        background-color: beige;
+    }
+
+    .card-3d{
+        width: 100%;
+        height: 100%;
+        position: relative;
         transform-style: preserve-3d;
-        /* 设置视距 */
-        perspective: 200px;
+        transition: transform 0.8s ease;
+        cursor: pointer;
     }
 
-    .box{
-        width: 100px;
-        height: 100px;
-        background-color: tomato;
-        transition: all 1s;
+    #flipCard:hover{
+        transform: rotateY(180deg);
     }
 
-    .box:hover{
-        transform: rotate3d(0,1,0,70deg)
+    .card-front, .card-back{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
+
+    .card-front{
+        background:linear-gradient(135deg, #6a11cb, #2575fc);
+    }
+
+    .card-back {
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        transform: rotateY(180deg);
+    }
+
 </style>
 
 </html>
