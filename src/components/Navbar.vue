@@ -45,7 +45,7 @@ const routes = [
 .navbar{
     width: 100%;
     height: 70px;
-    padding: 20px 100px;
+    padding: 15px 100px;
     background-color: transparent;
     /* margin-bottom: 2rem; */
 
