@@ -39,6 +39,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+        }
+
+        .wrapper{
+            display: flex;
             gap:3rem;
         }
 
@@ -61,20 +66,26 @@
     <div class="container">
         <div id="a" class="box">A</div>
         <div class="b_container">
-            <section class="wrapper">
-                <div class="box b">B</div>
-                <div class="box b">B</div>
-                <div class="box b">B</div>
+            <section>
+                <div class="wrapper">
+                    <div class="box b">B</div>
+                    <div class="box b">B</div>
+                    <div class="box b">B</div>
+                </div>
             </section>
-            <section class="wrapper">
-                <div class="box b">B</div>
-                <div class="box b">B</div>
-                <div class="box b">B</div>
+            <section>
+                <div class="wrapper">
+                    <div class="box b">B</div>
+                    <div class="box b">B</div>
+                    <div class="box b">B</div>
+                </div>
             </section>
-            <section class="wrapper">
-                <div class="box b">B</div>
-                <div class="box b">B</div>
-                <div class="box b">B</div>
+            <section>
+                <div class="wrapper">
+                    <div class="box b">B</div>
+                    <div class="box b">B</div>
+                    <div class="box b">B</div>
+                </div>
             </section>
         </div>
         <div id="c" class="box">C</div>
@@ -82,38 +93,45 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.utils.toArray('section').forEach((wrapper,index)=>{
-            const wrapperWidth = wrapper.scrollWidth;
+        gsap.utils.toArray('section').forEach((section,index)=>{
+
+            const w = section.querySelector('.wrapper');
+            const wrapperWidth = w.scrollWidth;
+            console.log(w);
+            console.log(wrapperWidth);
 
             if(index%2===0){
-                gsap.fromTo(wrapper, 
+                gsap.fromTo(w, 
                 { x: -wrapperWidth }, 
                 {
                     x: 0,
                     scrollTrigger: {
-                        trigger: wrapper,
+                        trigger: w,
                         scrub: 1,
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 90%",
+                        end: "bottom 10%",
+                        markers:true,
                     }
                 }
             );
             }
             else{
-                gsap.fromTo(wrapper, 
+                gsap.fromTo(w, 
                 { x: wrapperWidth }, 
                 {
                     x: 0,
                     scrollTrigger: {
-                        trigger: wrapper,
+                        trigger: w,
                         scrub: 1,
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 90%",
+                        end: "bottom 10%",
+                        markers:true,
                     }
                 }
             );
         }
-        })
+    })
+
 
         // gsap.to('.b_container',{
         //     scrollTrigger:{
@@ -127,7 +145,6 @@
         //     x:1000,
         //     // rotation:360,
         // })
-
     </script>
 </body>
 </html>
