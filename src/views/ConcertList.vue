@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const datas = ref([
     {
@@ -32,6 +32,11 @@ const datas = ref([
     url:'src/assets/test.jpg'
     },
 ])
+
+onMounted(()=>{
+    gsap.set('.card_bg h1',{x:-40,opacity:0})
+    gsap.to('.card_bg h1',{x:0,opacity:1,duration:3})
+})
 
 </script>
 
