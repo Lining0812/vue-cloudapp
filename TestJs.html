@@ -21,10 +21,13 @@
 
         .container{
             width: 100%;
-            height: 100vh;
+            height: 100%;
             display: flex;
             justify-content: left;
             align-items: center;
+        }
+        .wrapepr{
+            background-color: yellowgreen;
         }
 
         .box{
@@ -35,29 +38,38 @@
             background-color: tomato;
         }
 
+        /* .pin-spacer{
+            background-color: yellowgreen;
+        } */
     </style>
 </head>
 <body>
     <div class="card"></div>
 
     <div class="container">
-        <div class="box"></div>
+        <div class="wrapper">
+            <div class="box"></div>
+        </div>
     </div>
 
     <div class="card"></div>
     <script>
         gsap.registerPlugin(ScrollTrigger);
+        
+        // 基础动画
+        // gsap.to('.box',{x:200,duration:2,})
 
         gsap.to('.box',{
             scrollTrigger:{
                 trigger:'.container',
                 markers:true,
-                scrub:true,
                 start:'top top',
-                end:'+=100%',
+                end:'bottom top',
+                scrub:true,
                 pin:true,
+                // pinSpacing:false,
             },
-            x:800
+            x:100,
         })
 
     </script>
