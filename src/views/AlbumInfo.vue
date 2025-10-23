@@ -98,6 +98,7 @@ const t_album = ref([])
 onMounted(
     async ()=>{
         t_album.value = await albumApi.getTracksByAlbumId(Number(props.id));
+        console.log(t_album.value)
     }
 )
 

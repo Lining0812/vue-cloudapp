@@ -97,7 +97,6 @@ onMounted(()=>{
 .concert_container{
     margin-top: -100px;
     overflow-y: auto;
-    /* scroll-snap-type: y mandatory; */
 }
 
 .concert_card{
@@ -105,7 +104,6 @@ onMounted(()=>{
     height: 100vh;
 
     background-color: blanchedalmond;
-    /* scroll-snap-align: start; */
 }
 
 .card_content{
@@ -129,7 +127,7 @@ onMounted(()=>{
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;
-    background-attachment: fixed;
+    /* 移除fixed背景以提高性能 */
 
     display: flex;
     flex-direction: column;

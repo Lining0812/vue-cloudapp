@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h1{
+            font-size: 5rem;
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .container{
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .fullscreen{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #a{
+            background-color: black;
+            color: #9e9e9e;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #b{
+            background-color: black;
+            color: #ff5a31;
+            position: absolute;
+            top: 0;
+            left: 0;
+            clip-path: polygon(0% 10%,100% 10%,100% 10%,0% 10%);
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen"></div>
+    <div class="container">
+        <div id="a" class="fullscreen">
+            <h1>This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.</h1>
+        </div>
+        <div id="b" class="fullscreen">
+            <h1>This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.This is a test.</h1>
+        </div>
+    </div>
+    <div class="fullscreen"></div>
+    <script>     
+        gsap.registerPlugin(ScrollTrigger);
+
+        let anim = gsap.to('#b',{duration:5,clipPath:'polygon(0% 10%,100% 10%,100% 90%,0% 90%)'});
+
+        ScrollTrigger.create({
+            trigger:'.container',
+            scrub:1,
+            markers:true,
+            start:'top center',
+            end:'bottom center',
+            // pin:true,
+            animation:anim,
+        })
+
+    </script>
+</body>
+</html>
