@@ -1,19 +1,17 @@
 <template>
-<!-- <UploadFile></UploadFile> -->
 
 <div class="fullscreen">
-    <button id="opennav" @click="isNavOpen=true">Click Me</button>
+    <button id="opennav" @click="isNavopen=true">Click Me</button>
 </div>
-<Menu v-model:isActive="isNavOpen"></Menu>
+<Menu v-model="isNavopen"></Menu>
 
 </template>
 
 <script setup>
-// import UploadFile from '@/components/UploadFile.vue';
 import Menu from '@/components/Menu.vue';
 import { ref } from 'vue';
 
-const isNavOpen = ref(false);
+const isNavopen = ref(false);
 
 </script>
 

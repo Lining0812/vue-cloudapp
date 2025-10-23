@@ -3,7 +3,7 @@
         <div class="menubox_menu">
             <div class="menubox_menu_content">
                 <p>AAA</p>
-                <button @click="emits('update:isActive', false)">Close Nav</button>
+                <button @click="emits('update:modelValue', false)">Close Nav</button>
             </div>
         </div>
     </div>
@@ -15,14 +15,15 @@ import { onMounted, watch } from 'vue';
 
 // 父子组件参数传递
 const props = defineProps({
-    isActive:Boolean
+    modelValue:Boolean
 })
-const emits = defineEmits(['update:isActive'])
-
+const emits = defineEmits(['update:modelValue'])
 // 侦听参数
-watch(()=>props.isActive,(newVal)=>{navAnimation(newVal);});
+watch(()=>props.modelValue,(newVal)=>{navAnimation(newVal);});
 
+// 定义动画时间线
 const tl = gsap.timeline({ paused:true});
+
 function navAnimation(bool){
       if(bool){
         tl.play();
@@ -40,7 +41,7 @@ onMounted(()=>{
 
 </script>
 
-<style>
+<style scoped>
 #menubox{
     position: fixed;
     z-index: -1000;
