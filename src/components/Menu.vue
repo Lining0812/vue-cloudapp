@@ -22,7 +22,7 @@ const emits = defineEmits(['update:isActive'])
 // 侦听参数
 watch(()=>props.isActive,(newVal)=>{navAnimation(newVal);});
 
-const tl = gsap.timeline({ paused: true });
+const tl = gsap.timeline({ paused:true});
 function navAnimation(bool){
       if(bool){
         tl.play();
@@ -35,7 +35,7 @@ function navAnimation(bool){
 onMounted(()=>{
     tl.set('body',{overflow:'hidden'})
       .set('#menubox',{zIndex:1000})
-      .fromTo('.menubox_menu',{yPercent:100},{duration:2,yPercent:0})
+      .fromTo('.menubox_menu',{yPercent:100},{duration:1.5,yPercent:0,ease:'power3.inOut'})
 })
 
 </script>
