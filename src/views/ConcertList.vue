@@ -83,12 +83,6 @@ function runAnimation2(){
 onMounted(()=>{
     runAnimation1();
     runAnimation2();
-
-    // gsap.set('.card_content h1',{y:-70,opacity:0})
-    // gsap.to('.card_content h1',{y:0,opacity:1,duration:3})
-
-    // gsap.set('.card_bg h1',{x:-70,opacity:0})
-    // gsap.to('.card_bg h1',{x:0,opacity:1,duration:3})
 })
 
 </script>
@@ -127,8 +121,6 @@ onMounted(()=>{
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;
-    /* 移除fixed背景以提高性能 */
-
     display: flex;
     flex-direction: column;
     justify-content: center;
