@@ -15,7 +15,7 @@ const isNavopen = ref(false);
 
 </script>
 
-<style>
+<style scoped>
 .fullscreen{
     margin-top: -100px;
     width: 100%;
@@ -26,5 +26,4 @@ const isNavopen = ref(false);
 button{
     margin-top: 500px;
 }
-
 </style>

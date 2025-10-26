@@ -2,7 +2,18 @@
     <div id="menubox">
         <div class="menubox_menu">
             <div class="menubox_menu_content">
-                <p>AAA</p>
+                <div class="mmu_link">
+                    <p>a×a</p>
+                    <p>AAA</p>
+                </div>
+                <div class="mmu_link">
+                    <p>b×b</p>
+                    <p>BBB</p>
+                </div>
+                <div class="mmu_link">
+                    <p>c×c</p>
+                    <p>CCC</p>
+                </div>
                 <button @click="emits('update:modelValue', false)">Close Nav</button>
             </div>
         </div>
@@ -18,7 +29,7 @@ const props = defineProps({
     modelValue:Boolean
 })
 const emits = defineEmits(['update:modelValue'])
-// 侦听参数
+// 侦听参数WQ
 watch(()=>props.modelValue,(newVal)=>{navAnimation(newVal);});
 
 // 定义动画时间线
@@ -46,7 +57,6 @@ onMounted(()=>{
     position: fixed;
     z-index: -1000;
 }
-
 .menubox_menu{
     width: 100%;
     height: 100%;
@@ -55,9 +65,20 @@ onMounted(()=>{
     left: 0;
     background-color: antiquewhite;
 }
-
 .menubox_menu_content{
     position: relative;
+    font-size: 4.5rem;
+    width: 450PX;
+}
+.mmu_link{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
+.mmu_link p:first-child {
+    font-size: 1rem;
+    writing-mode: vertical-lr;
+}
 </style>
