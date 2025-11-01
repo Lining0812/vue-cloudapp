@@ -17,7 +17,6 @@ const isNavopen = ref(false);
 
 <style scoped>
 .fullscreen{
-    margin-top: -100px;
     width: 100%;
     height: 100vh;
     background-color: aquamarine;

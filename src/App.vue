@@ -1,16 +1,11 @@
 <template>
-  <Navbar/>
-  <div class="container">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script setup>
-import Navbar from './components/Navbar.vue';
+
 </script>
 
 <style>
-.container{
-  padding-top: 100px;
-}
+
 </style>

@@ -20,8 +20,6 @@
     /* justify-content: center; */
     align-items: center;
     position: relative;
-
-    margin-top: -100px;
 }
 
 .banner img{
