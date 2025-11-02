@@ -1,6 +1,6 @@
 <template>
-    <div class="menu-overlay">
-        <div class="menu-content">
+    <div class="menu-overlay" ref="menuOverlay">
+        <div class="menu-content" ref="menuContent">
             <div class="menu-items">
                 <div class="col-lg">
                     <div class="menu-preview-img"><img src="../assets/T1.jpg" alt=""></div>
@@ -33,6 +33,8 @@
 </template>
 
 <script setup>
+import gsap from 'gsap';
+import { ref,onMounted, watch } from 'vue';
 const routes = [
     {
         name:"home",
@@ -59,6 +61,99 @@ const routes = [
         title:"testupload",
     },
 ]
+
+const props = defineProps({
+    isOpen:{
+        type:Boolean,
+        default:false,
+    },
+    isAnimating:{
+        type:Boolean,
+        default:false,
+    },
+});
+
+const menuOverlay = ref(null);
+const menuContent = ref(null);
+
+// 监听属性并执行动画
+watch(() => props.isOpen, (newVal) => {
+    if(!props.isAnimating) return;
+    if(newVal) {
+        openMenu();
+    } else {
+        closeMenu();
+    }
+});
+
+// onMounted(() => {
+//     // 初始隐藏链接
+//     gsap.set(['.link a','.social a'],{
+//         y:'120%',
+//         opacity:0
+//     });
+// });
+
+function openMenu(){
+    // gsap.to(container,{
+    //     rotation:10,
+    //     x:300,
+    //     y:450,
+    //     scale:1.5,
+    //     duration:1.25,
+    //     ease:'power4.inOut',
+    // });
+
+    gsap.to(menuContent.value,{
+        rotation:0,
+        x:0,
+        y:0,
+        scale:1,
+        duration:1.25,
+        ease:'power4.inOut',
+    });
+    gsap.to(['.link a','.social a'],{
+        y:"0%",
+        opacity:1,
+        duration:1,
+        delay:0.75,
+        stagger:0.1,
+        ease:'power3.out',
+    });
+    gsap.to(menuOverlay.value,{
+        clipPath:'polygon(0% 0%,100% 0%,100% 175%,0% 100%)',
+        duration:1.25,
+        ease:'power4.inOut',
+    });
+}
+
+function closeMenu(){
+    // gsap.to(container,{
+    //     rotation:0,
+    //     x:0,
+    //     y:0,
+    //     scale:1,
+    //     duration:1.25,
+    //     ease:'power4.inOut',
+    // });
+    gsap.to(menuContent.value,{
+        rotation:-15,
+        x:-100,
+        y:-100,
+        scale:1.5,
+        // opacity:0.25,
+        duration:1.25,
+        ease:'power4.inOut',
+    });
+    gsap.to(menuOverlay.value,{
+        clipPath:'polygon(0% 0%,100% 0%,100% 0%,0% 0%)',
+        duration:1.25,
+        ease:'power4.inOut',
+        onComplete:()=>{
+            gsap.set(['.link a','.social a'],{y:'120%'});
+        },
+    });
+}
 </script>
 
 <style scoped>
@@ -66,10 +161,6 @@ const routes = [
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-
-body{
-    overflow-x: hidden;
 }
 
 img{
@@ -136,7 +227,7 @@ a,p{
 }
 
 .menu-preview-img{
-    position: relative;
+    position: relative; 
     width: 70%;
     height: 100%;
     overflow: hidden;
@@ -154,9 +245,15 @@ a,p{
     gap: 2.5em;
 }
 
-.menu-links,.menu-socials{
+.menu-links{
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
+}
+
+.menu-socials{
+    display: flex;
+    flex-direction: row;
     gap: 0.5em;
 }
 
@@ -214,6 +311,19 @@ a,p{
 .menu-footer a:hover::after{
     transform: scaleX(1);
     transform-origin: left;
+}
+
+.link a,
+.social a{
+    transform: translateY(120%);
+    /* opacity: 0.25; */
+}
+.menu-content{
+    transform: translateX(-100px) translateY(-100px) scale(1.5) rotate(-15deg);
+    /* opacity: 0.25; */
+}
+.menu-overlay{
+    clip-path: polygon(0% 0%,100% 0%,100% 0%,0% 0%);
 }
 
 </style>
