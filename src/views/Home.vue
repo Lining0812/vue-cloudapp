@@ -33,7 +33,6 @@
 
 .content{
     position: relative;
-    z-index: 10;
     color: white;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 
@@ -43,4 +42,5 @@
 </style>
 
 <script setup>
+import { ref } from 'vue';
 </script>

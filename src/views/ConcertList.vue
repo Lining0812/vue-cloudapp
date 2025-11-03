@@ -87,9 +87,8 @@ onMounted(()=>{
 
 </script>
 
-<style>
+<style scoped>
 .concert_container{
-    margin-top: -100px;
     overflow-y: auto;
 }
 

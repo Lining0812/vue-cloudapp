@@ -8,7 +8,11 @@
                 <div class="col-sm">
                     <div class="menu-links">
                         <div class="link" v-for="(route,index) in routes" :key="index">
-                            <router-link :to="{name:route.name}" data-img="../assets/T1.jpg">{{ route.title }}</router-link>
+                            <router-link 
+                            :to="{name:route.name}" 
+                            data-img="../assets/T1.jpg">
+                            {{ route.title }}
+                        </router-link>
                         </div>
                     </div>
                     <div class="menu-socials">
@@ -34,32 +38,14 @@
 
 <script setup>
 import gsap from 'gsap';
-import { ref,onMounted, watch } from 'vue';
+import { ref, watch } from 'vue';
 const routes = [
-    {
-        name:"home",
-        title:"主页|Home",
-    },
-    {
-        name:"albumlist",
-        title:"专辑|Album",
-    },
-        {
-        name:"concertlist",
-        title:"演唱会|Concert",
-    },
-    {
-        name:"origins",
-        title:"起源|Origins",
-    },
-    {
-        name:"test",
-        title:"测试|test",
-    },
-    {
-        name:"testupload",
-        title:"testupload",
-    },
+    {name:"home",title:"主页|Home",},
+    {name:"albumlist",title:"专辑|Album",},
+    {name:"concertlist",title:"演唱会|Concert",},
+    {name:"origins",title:"起源|Origins",},
+    {name:"test",title:"测试|test",},
+    {name:"testupload",title:"testupload",},
 ]
 
 const props = defineProps({

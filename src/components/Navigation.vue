@@ -3,14 +3,13 @@
     <div class="logo">
         <a href="#">Yun雲</a>
     </div>
-    <div class="menu-toggle" @click="handleClick">
-        <p id="menu-open">Menu</p>
-        <p id="menu-close">Close</p>
-    </div>
+    <NavButton @click="handleClick"></NavButton>
 </nav>
 </template>
 
 <script setup>
+import NavButton from './Button/NavButton.vue';
+
 import { onMounted,watch } from 'vue';
 import gsap from 'gsap';
 
@@ -111,24 +110,6 @@ nav{
 }
 
 .logo a{
-    font-weight: 600;
-}
-
-.menu-toggle{
-    position: relative;
-    width: 3rem;
-    height: 1.5rem;
-    cursor: pointer;
-}
-
-.menu-toggle p{
-    position: absolute;
-    transform-origin: top left;
-    will-change: transform,opacity;
-}
-
-.menu-toggle p#menu-close{
-    opacity: 0;
-    transform: translateX(-5px) translateY(10px) rotate(5deg);
+    font-weight: 700;
 }
 </style>
