@@ -1,46 +1,75 @@
 <template>
-    <div class="banner">
-        <img src="../assets/test.jpg" alt="背景"/>
-        <!-- <video src="../assets/MangXuan.mp4" muted loop autoplay></video> -->
-        <div class="content">
-            <h1>黄霄雲</h1>
-            <h2>Ghost Huang</h2>
-            <p>黄霄雲，1998年12月22日出生于贵州省黔南布依族苗族自治州，中国内地流行乐女歌手、影视演员，毕业于中央音乐学院。</p>
+    <div class="intro"></div>
+    <div class="container">
+        <div class="text">
+            Break apart HTML text into characters, words, and/or lines for easy animation.
         </div>
+        <!-- <button @click="onClick">Click Me</button> -->
     </div>
-
+    <div class="outro"></div>
 </template>
 
-<style>
-.banner{
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    position: relative;
-}
-
-.banner img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.content{
-    position: relative;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-
-    padding: 100px;
-    max-width: 900px;
-}
-</style>
-
 <script setup>
-import { ref } from 'vue';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import SplitText from 'gsap/SplitText';
+
+import { onMounted, ref } from 'vue';
+
+const split = ref(null);
+
+onMounted(()=>{
+    gsap.registerPlugin(ScrollTrigger,SplitText);
+
+    split.value = SplitText.create('.text',{type:'lines',linesClass:'split-line'});
+
+    split.value.lines.forEach((line,index) => {
+    ScrollTrigger.create({
+        trigger:line,
+        start:'top 90%',
+        end:'end end',
+        markers:true,
+        animation:gsap.from(line,{duration:1,opacity:0}),
+        toggleActions:'restart none none reverse',
+    })
+});
+})
+
+// function onClick(){
+//     gsap.from(split.value.lines,{
+//         y:'100%',
+//         opacity: 0,
+//         duration: 1, 
+//         ease: "power3",
+//         stagger: 0.5,
+//     })
+// }
+
 </script>
+
+<style scoped>
+.intro,.container,.outro{
+    width: 100vw;
+    height: 100vh;
+}
+
+.intro,.outro{
+    background-color: #000;
+}
+
+.container{
+    background-color: tomato;
+}
+
+.text {
+  color: #dfdcff;
+  font-size: clamp(2rem, 12rem, 5vw);
+  line-height: 1.2;
+  box-sizing: border-box;
+  padding: 5%;
+  width: 100%;
+  text-align: center;
+  perspective: 500px;
+}
+
+</style>
