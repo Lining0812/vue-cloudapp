@@ -38,25 +38,25 @@ function animateMenuToggle(isOpening) {
   const open = document.querySelector('p#menu-open');
   const close = document.querySelector('p#menu-close');
 
-  gsap.to(isOpening ? open : close, {
-    x: isOpening ? -5 : 5,
-    y: isOpening ? -10 : 10,
-    rotation: isOpening ? -5 : 5,
-    opacity: 0,
-    delay: 0.25,
-    duration: 0.5,
-    ease: 'power2.out',
-  });
+  // gsap.to(isOpening ? open : close, {
+  //   x: isOpening ? -5 : 5,
+  //   y: isOpening ? -10 : 10,
+  //   rotation: isOpening ? -5 : 5,
+  //   opacity: 0,
+  //   delay: 0.25,
+  //   duration: 0.5,
+  //   ease: 'power2.out',
+  // });
 
-  gsap.to(isOpening ? close : open, {
-    x: 0,
-    y: 0,
-    rotation: 0,
-    opacity: 1,
-    delay: 0.5,
-    duration: 0.5,
-    ease: 'power2.out',
-  });
+  // gsap.to(isOpening ? close : open, {
+  //   x: 0,
+  //   y: 0,
+  //   rotation: 0,
+  //   opacity: 1,
+  //   delay: 0.5,
+  //   duration: 0.5,
+  //   ease: 'power2.out',
+  // });
 }
 
 // 监听 isOpen 变化并执行相应动画
@@ -66,21 +66,21 @@ watch(() => props.isOpen, (newVal) => {
 
 // 初始化状态（根据父组件初始isOpen值）
 onMounted(() => {
-  const close = document.querySelector('p#menu-close');
-  gsap.set(close, {
-    opacity: props.isOpen ? 1 : 0,
-    x: props.isOpen ? 0 : -5,
-    y: props.isOpen ? 0 : 10,
-    rotation: props.isOpen ? 0 : 5,
-  });
+  // const close = document.querySelector('p#menu-close');
+  // gsap.set(close, {
+  //   opacity: props.isOpen ? 1 : 0,
+  //   x: props.isOpen ? 0 : -5,
+  //   y: props.isOpen ? 0 : 10,
+  //   rotation: props.isOpen ? 0 : 5,
+  // });
 
-  const open = document.querySelector('p#menu-open');
-  gsap.set(open, {
-    opacity: props.isOpen ? 0 : 1,
-    x: props.isOpen ? 5 : 0,
-    y: props.isOpen ? 10 : 0,   
-    rotation: props.isOpen ? 5 : 0,
-  });
+  // const open = document.querySelector('p#menu-open');
+  // gsap.set(open, {
+  //   opacity: props.isOpen ? 0 : 1,
+  //   x: props.isOpen ? 5 : 0,
+  //   y: props.isOpen ? 10 : 0,   
+  //   rotation: props.isOpen ? 5 : 0,
+  // });
 });
 </script>
 

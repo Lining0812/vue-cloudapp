@@ -181,9 +181,69 @@
             const outlineCtx = outlineCanvas.getContext('2d');
             const fillCtx = fillCanvas.getContext('2d');
 
+            function setCanvasSize(canvas,ctx){
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = window.innerWidth * dpr;
+                canvas.height = window.innerHeight * dpr;
+                canvas.style.width = `${window.innerWidth}px`;
+                canvas.style.height = `${window.innerHeight}`;
+                ctx.scale(dpr,dpr);
+            }
+
+            setCanvasSize(outlineCanvas,outlineCtx);
+            setCanvasSize(fillCanvas,fillCtx);
+
+            const triangleSize = 150;
+            const linewidth = 1;
+            const scale_threshold = 0.01;
+            const triangleStates = new Map();
+            let animationFrameId = null;
+            let canvasXPosition = 0;
+            
+            function drawTriangle(ctx,x,y,fillscale = 0,flipped = false){
+                const halfSize = triangleSize / 2;
+                if (flipped < scale_threshold){
+                    ctx.beginPath();
+                    if(!flipped){
+                        ctx.moveTo(x,y - halfSize);
+                        ctx.lineTo(x + halfSize,y + halfSize);
+                        ctx.lineTo(x - halfSize,y + halfSize);
+                    } else {
+                        ctx.moveTo(x,y + halfSize);
+                        ctx.lineTo(x + halfSize,y - halfSize);
+                        ctx.lineTo(x - halfSize,y - halfSize);
+                    }
+                    ctx.closePath();
+                    ctx.strokeStyle = 'rgba(255,255,255,0.075)';
+                    ctx.linewidth = linewidth;
+                    ctx.stroke();
+                }
+                if(flipped >= scale_threshold){
+                    ctx.save();
+                    ctx.translate(x,y);
+                    ctx.scale(fillscale,fillscale);
+                    ctx.translate(-x,-y);
+
+                    ctx.beginPath();
+                    if(!flipped){
+                        ctx.moveTo(x,y - halfSize);
+                        ctx.lineTo(x + halfSize,y + halfSize);
+                        ctx.lineTo(x - halfSize,y + halfSize);
+                    } else {
+                        ctx.moveTo(x,y + halfSize);
+                        ctx.lineTo(x + halfSize,y - halfSize);
+                        ctx.lineTo(x - halfSize,y - halfSize);
+                    }
+                    ctx.closePath();
+                    ctx.fillStyle = '#ff6b00';
+                    ctx.strokeStyle = '#ff6b00';
+                    ctx.linewidth = linewidth;
+                    ctx.stroke();
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
         })
-
-
     </script>
 </body>
 </html>
