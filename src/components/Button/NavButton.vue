@@ -11,7 +11,7 @@
     /* The size of the SVG defines the overall size */
     height: 3em;
     /* Define the transition for transforming the SVG */
-    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 1.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .line {

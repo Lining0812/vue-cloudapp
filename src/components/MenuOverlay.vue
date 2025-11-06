@@ -16,9 +16,9 @@
                         </div>
                     </div>
                     <div class="menu-socials">
-                        <div class="social"><a href="#">Home1</a></div>
-                        <div class="social"><a href="#">Home2</a></div>
-                        <div class="social"><a href="#">Home3</a></div>
+                        <div class="social"><a href="https://weibo.com/n/%E9%BB%84%E9%9C%84%E9%9B%B2?from=feed&loc=at" target="_blank">Home1</a></div>
+                        <div class="social"><a href="https://www.douyin.com/user/MS4wLjABAAAAjW0gMk6HfnozLjpBmla_Ad2igcU4EkqV6WwnkK0ZuNM?from_tab_name=main&is_search=1&list_name=follow&nt=0" target="_blank">Home2</a></div>
+                        <div class="social"><a href="https://www.xiaohongshu.com/user/profile/5e6cc87f0000000001003f24?xsec_token=ABv83ps5rrhzyZOslpS79yphATmpcFcFLPhQtP_GRCaqQ%3D&xsec_source=pc_search" target="_blank">Home3</a></div>
                         <div class="social"><a href="#">Home4</a></div>
                     </div>
                 </div>
