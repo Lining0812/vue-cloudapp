@@ -4,7 +4,6 @@
         <div class="text">
             Break apart HTML text into characters, words, and/or lines for easy animation.
         </div>
-        <!-- <button @click="onClick">Click Me</button> -->
     </div>
     <div class="outro"></div>
 </template>
@@ -17,33 +16,25 @@ import SplitText from 'gsap/SplitText';
 import { onMounted, ref } from 'vue';
 
 const split = ref(null);
+const splitTrigger = ref(null)
 
 onMounted(()=>{
     gsap.registerPlugin(ScrollTrigger,SplitText);
 
     split.value = SplitText.create('.text',{type:'lines',linesClass:'split-line'});
+    splitTrigger.value = SplitText.create('.text',{type:'lines',linesClass:'split-trigger'});
 
     split.value.lines.forEach((line,index) => {
     ScrollTrigger.create({
-        trigger:line,
-        start:'top 90%',
+        trigger:splitTrigger.value.lines[index],
+        start:'top 80%',
         end:'end end',
         markers:true,
-        animation:gsap.from(line,{duration:1,opacity:0}),
+        animation:gsap.from(line,{duration:0.5,opacity:0,y:100}),
         toggleActions:'restart none none reverse',
     })
 });
 })
-
-// function onClick(){
-//     gsap.from(split.value.lines,{
-//         y:'100%',
-//         opacity: 0,
-//         duration: 1, 
-//         ease: "power3",
-//         stagger: 0.5,
-//     })
-// }
 
 </script>
 

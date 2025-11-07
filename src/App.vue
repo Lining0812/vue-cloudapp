@@ -28,7 +28,7 @@ function handleMenuToggle(){
 router.afterEach(() => {
   if (isOpen.value) { 
     isAnimating.value = true;
-    isOpen.value = false; 
+    isOpen.value = false;
     setTimeout(() => {
       isAnimating.value = false;
     }, 1250);
