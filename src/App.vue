@@ -27,16 +27,12 @@ function handleMenuToggle(){
 // 路由跳转后自动关闭菜单
 router.afterEach(() => {
   if (isOpen.value) { 
-    isAnimating.value = true;
-    isOpen.value = false;
-    setTimeout(() => {
-      isAnimating.value = false;
-    }, 1250);
+    handleMenuToggle();
   }
 });
 
 </script>
 
-<style>
+<style scoped>
 
 </style>

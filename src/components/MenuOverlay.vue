@@ -39,6 +39,7 @@
 <script setup>
 import gsap from 'gsap';
 import { ref, watch } from 'vue';
+
 const routes = [
     {name:"home",title:"主页|Home",},
     {name:"albumlist",title:"专辑|Album",},
@@ -52,11 +53,7 @@ const props = defineProps({
     isOpen:{
         type:Boolean,
         default:false,
-    },
-    isAnimating:{
-        type:Boolean,
-        default:false,
-    },
+    }
 });
 
 const menuOverlay = ref(null);
@@ -64,7 +61,6 @@ const menuContent = ref(null);
 
 // 监听属性并执行动画
 watch(() => props.isOpen, (newVal) => {
-    if(!props.isAnimating) return;
     if(newVal) {
         openMenu();
     } else {
