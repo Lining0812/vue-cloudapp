@@ -1,20 +1,22 @@
 <template>
-    <!-- 加载中提示 -->
-    <div v-if="isLoading" style="text-align: center;">
-        加载中...
-    </div>
+    <div class="testview">
+        <!-- 加载中提示 -->
+        <div v-if="isLoading" style="text-align: center;">
+            加载中...
+        </div>
 
-    <div v-else>
-        <h1 style="text-align: center;">Test View</h1>
+        <div v-else>
+            <h1 style="text-align: center;">Test View</h1>
 
-        <h2 style="text-align: center;">单曲列表</h2>
-        <ul>
-            <li v-for="(track,index) in t_track" :key="index">
-                <router-link :to="{name:'dytest',params:{id:index}}">
-                    {{ track.title }}
-                </router-link>
-            </li>
-        </ul>
+            <h2 style="text-align: center;">单曲列表</h2>
+            <ul>
+                <li v-for="(track,index) in t_track" :key="index">
+                    <router-link :to="{name:'dytest',params:{id:index}}">
+                        {{ track.title }}
+                    </router-link>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
  
@@ -39,4 +41,9 @@ onMounted(
 </script>
 
 <style>
+.testview{
+    background-color: #000;
+    width: 100vw;
+    height: 100vh;
+}
 </style>

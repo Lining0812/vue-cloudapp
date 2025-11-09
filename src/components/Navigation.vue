@@ -1,17 +1,15 @@
 <template>
 <nav>
     <div class="logo">
-        <a href="#">Yun雲</a>
+      <router-link :to="{name:'home'}">Yun雲</router-link>
     </div>
-    <NavButton @click="handleClick"></NavButton>
+    <NavButton :is-open="isOpen" @click="handleClick"/>
 </nav>
 </template>
 
 <script setup>
 import NavButton from './Button/NavButton.vue';
-
 import { onMounted,watch } from 'vue';
-import gsap from 'gsap';
 
 const props = defineProps({
     isOpen:{
