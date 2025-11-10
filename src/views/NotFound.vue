@@ -55,6 +55,8 @@ onMounted(()=>{
     gsap.registerPlugin(ScrollTrigger);
 
     console.log(races);
+    const element = races.value.querySelectorAll('h2');
+    console.log(element);
 
     const tween = gsap.to(races.value,{
     x:getScrollAmount(),
