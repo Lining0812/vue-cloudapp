@@ -57,6 +57,11 @@ const router = createRouter(
         // 历史模式有两种可选
         history: createWebHistory(),
         routes,
+        // 添加滚动行为配置，设置路由跳转时滚动到顶部
+        scrollBehavior(to, from, savedPosition) {
+            // 始终滚动到顶部
+            return { top: 0 }
+        }
     }
 )
 
