@@ -1,7 +1,7 @@
 <template>
   <router-link :to="{name:'albuminfo',params:{id:album.id}}">
     <div class="card">
-      <img src="@/assets/test.jpg" alt="测试图片" class="card__image">
+      <img src="@/assets/images/test.jpg" alt="测试图片" class="card__image">
       <div class="card__content">
         <p class="card__title">{{ album.title }}</p>
         <p class="card__description">{{ album.description }}</p>

@@ -4,7 +4,7 @@
 
         <div class="albuminfo">
             <div class="left_img">
-                <img src="/src/assets/test.jpg" alt="没语季节">
+                <img src="/src/assets/images/test.jpg" alt="没语季节">
             </div>
             <div class="right_info" v-if="currentAlbum">
                 <h2>{{ currentAlbum.title }}</h2>

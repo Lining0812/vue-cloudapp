@@ -23,19 +23,19 @@ const datas = ref([
     title:"宇宙无敌号-成都站",
     dec:"宇宙无敌号-成都站",
     dec2:"如果说 倦过 又逃过 也爱过 也拥抱过 对了错了好似也成真过 是时候继续往前走！",
-    url:'src/assets/test3.jpg'
+    url:'src/assets/images/test3.jpg'
     },
     {
     title:"宇宙无敌号-上海站",
     dec:"宇宙无敌号-上海站",
     dec2:"我是阿鬼，别怕别着急，接下来的十年，我们会有更多属于我们的星辰大海，love you！",
-    url:'src/assets/test2.jpg'
+    url:'src/assets/images/test2.jpg'
     },
     {
     title:"宇宙无敌号-宁波站",
     dec:"宇宙无敌号-宁波站",
     dec2:"你要相信我会回来，即使我们的距离还在光年外！",
-    url:'src/assets/test.jpg'
+    url:'src/assets/images/test.jpg'
     },
 ])
 

@@ -3,14 +3,14 @@
         <div class="menu-content" ref="menuContent">
             <div class="menu-items">
                 <div class="col-lg">
-                    <div class="menu-preview-img"><img src="../assets/T1.jpg" alt=""></div>
+                    <div class="menu-preview-img"><img src="../assets/images/T1.jpg" alt=""></div>
                 </div>
                 <div class="col-sm">
                     <div class="menu-links">
                         <div class="link" v-for="(route,index) in routes" :key="index">
                             <router-link 
                             :to="{name:route.name}" 
-                            data-img="../assets/T1.jpg">
+                            data-img="../assets/images/T1.jpg">
                             {{ route.title }}
                         </router-link>
                         </div>

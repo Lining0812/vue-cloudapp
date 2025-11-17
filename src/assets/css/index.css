@@ -1,12 +1,20 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
 }
 
 :root{
     --color-primary: white;
-    --color-hover: #ff00a6;
+    --color-hover: tomato;
+
+    --color-pink: #ffc0cb;
+    --color-bgpink: #ff69b4;
+    --color-dppink: #ff1493;
+
     --font-family: 'MainStyle', sans-serif;
 }
 

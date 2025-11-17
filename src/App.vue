@@ -7,8 +7,8 @@
 <script setup>
 import Navigation from '@/components/Navigation.vue';
 import MenuOverlay from '@/components/MenuOverlay.vue';
-import { ref } from 'vue';
 import router from './routers/index'
+import { ref } from 'vue';
 
 const isOpen = ref(false);
 const isAnimating = ref(false);
@@ -30,9 +30,7 @@ router.afterEach(() => {
     handleMenuToggle();
   }
 });
-
 </script>
 
 <style scoped>
-
 </style>
