@@ -3,11 +3,14 @@
         <div class="menu-content" ref="menuContent">
             <div class="menu-items">
                 <div class="col-lg">
-                    <div class="menu-preview-img"><img src="../assets/images/T1.jpg" alt=""></div>
+                    <div class="menu-preview-img">
+                        <img :src="currentImage" alt="Menu Preview" ref="previewImg">
+                    </div>
                 </div>
                 <div class="col-sm">
                     <div class="menu-links">
-                        <div class="link" v-for="(route, index) in routes" :key="index">
+                        <div class="link" v-for="(route, index) in routes" :key="index"
+                            @mouseover="changeImage(route.image)">
                             <router-link :to="{ name: route.name }" data-img="../assets/images/T1.jpg">
                                 {{ route.title }}
                             </router-link>
@@ -22,11 +25,11 @@
             </div>
             <div class="menu-footer">
                 <div class="col-lg">
-                    <a href="#">Run Sequence</a>
+                    <a href="#">联系我们|Contact</a>
                 </div>
                 <div class="col-sm">
-                    <a href="#">Origin</a>
-                    <a href="#">Join Single</a>
+                    <a href="#">联系我们|Contact</a>
+                    <a href="#">关于|About</a>
                 </div>
             </div>
         </div>
@@ -38,13 +41,13 @@ import gsap from 'gsap';
 import { ref, watch } from 'vue';
 
 const routes = [
-    { name: "home", title: "主页|Home", },
-    { name: "albumlist", title: "专辑|Album", },
-    { name: "concertlist", title: "演唱会|Concert", },
-    { name: "origins", title: "起源|Origins", },
-    { name: "test", title: "测试|test", },
-    { name: "testupload", title: "testupload", },
-]
+    { name: "home", title: "主页|Home", image: "/src/assets/images/T1.jpg" },
+    { name: "albumlist", title: "专辑|Album", image: "/src/assets/images/T2.jpg" },
+    { name: "concertlist", title: "演唱会|Concert", image: "/src/assets/images/T3.jpg" },
+    { name: "origins", title: "起源|Origins", image: "/src/assets/images/T4.jpg" },
+    { name: "test", title: "测试|test", image: "/src/assets/images/T1.jpg" },
+    { name: "testupload", title: "testupload", image: "/src/assets/images/T2.jpg" },
+];
 
 const socials = [
     { url: 'https://space.bilibili.com/501005668', title: "哔哩哔哩" },
@@ -52,7 +55,6 @@ const socials = [
     { url: 'https://www.douyin.com/user/MS4wLjABAAAAjW0gMk6HfnozLjpBmla_Ad2igcU4EkqV6WwnkK0ZuNM', title: "抖音" },
     { url: 'https://www.xiaohongshu.com/user/profile/5e6cc87f0000000001003f24', title: "小红书" },
 ]
-
 
 const props = defineProps({
     isOpen: {
@@ -63,8 +65,9 @@ const props = defineProps({
 
 const menuOverlay = ref(null);
 const menuContent = ref(null);
+const previewImg = ref(null);
+const currentImage = ref('/src/assets/images/T1.jpg');
 
-// 监听属性并执行动画
 watch(() => props.isOpen, (newVal) => {
     if (newVal) {
         openMenu();
@@ -82,7 +85,7 @@ function openMenu() {
         duration: 1.25,
         ease: 'power4.inOut',
     });
-    gsap.to(['.link a', '.social a'], {
+    gsap.to(menuContent.value.querySelectorAll('.link a, .social a'), {
         y: "0%",
         opacity: 1,
         duration: 1,
@@ -111,14 +114,29 @@ function closeMenu() {
         duration: 1.25,
         ease: 'power4.inOut',
         onComplete: () => {
-            gsap.set(['.link a', '.social a'], { y: '120%' });
+            gsap.set(menuContent.value.querySelectorAll('.link a, .social a'), { y: '120%' });
         },
+    });
+}
+
+function changeImage(newImage) {
+    if (currentImage.value === newImage) return;
+
+    gsap.to(previewImg.value, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+            currentImage.value = newImage;
+            gsap.to(previewImg.value, {
+                opacity: 1,
+                duration: 0.3
+            });
+        }
     });
 }
 </script>
 
 <style scoped>
-
 img {
     width: 100%;
     height: 100%;
