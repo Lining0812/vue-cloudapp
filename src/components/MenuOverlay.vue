@@ -25,7 +25,9 @@
             </div>
             <div class="menu-footer">
                 <div class="col-lg">
-                    <a href="#">联系我们|Contact</a>
+                    <a href="https://y.qq.com/n/ryqq/singer/000oCQfT3kdonw" target="_blank">QQ音乐</a>
+                    <a href="https://music.apple.com/cn/artist/%E9%BB%84%E9%9C%84%E9%9B%B2/1478401199" target="_blank">Apple音乐</a>
+                    <a href="https://music.163.com/#/artist?id=14077324" target="_blank">网易云音乐</a>
                 </div>
                 <div class="col-sm">
                     <a href="#">联系我们|Contact</a>
@@ -43,9 +45,9 @@ import { ref, watch } from 'vue';
 const routes = [
     { name: "home", title: "主页|Home", image: "/src/assets/images/T1.jpg" },
     { name: "albumlist", title: "专辑|Album", image: "/src/assets/images/T2.jpg" },
-    { name: "concertlist", title: "演唱会|Concert", image: "/src/assets/images/T3.jpg" },
+    { name: "concert", title: "演唱会|Concert", image: "/src/assets/images/T3.jpg" },
     { name: "origins", title: "起源|Origins", image: "/src/assets/images/T4.jpg" },
-    { name: "test", title: "测试|test", image: "/src/assets/images/T1.jpg" },
+    { name: "test", title: "测试|test", image: "/src/assets/images/T5.jpg" },
     { name: "testupload", title: "testupload", image: "/src/assets/images/T2.jpg" },
 ];
 
@@ -262,6 +264,11 @@ p {
 .menu-footer {
     position: absolute;
     bottom: 0;
+}
+
+.menu-footer .col-lg {
+    display: flex;
+    justify-content: space-around;
 }
 
 .menu-footer .col-sm {

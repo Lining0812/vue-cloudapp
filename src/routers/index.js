@@ -19,9 +19,9 @@ const routes = [
                 props:true,
             },
             {
-                name:'concertlist',
-                path:'/concerts', // http://localhost:5173/concert
-                component:()=>import('@/views/ConcertList.vue'),
+                name:'concert',
+                path:'/concert', // http://localhost:5173/concert
+                component:()=>import('@/views/Concert.vue'),
             },
             {
                 name:'origins',
@@ -33,12 +33,6 @@ const routes = [
                 path:'/test', // http://localhost:5173/test
                 component:()=>import('@/views/Test.vue'),
             },
-            // {
-            //     name:'dytest',
-            //     path:'/test/:id', // http://localhost:5173/test/:id
-            //     component:()=>import('@/views/Dytest.vue'),
-            //     props:true,
-            // },
             {
                 name:'testupload',
                 path:'/testupload', // http://localhost:5173/testupload
