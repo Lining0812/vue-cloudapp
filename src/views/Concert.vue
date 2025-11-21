@@ -1,29 +1,31 @@
 <template>
     <div class="concert_slide">
         <div class="slide" v-for="(slide, index) in slides" :key="index" ref="sections">
-            <div class="outer">
-                <div class="slide-img">
-                    <img :src="slide.slideImg" :alt="slide.slideTitle">
-                </div>
-                <div class="slide-header">
-                    <div class="slide-title">
-                        <h1>{{ slide.slideTitle }}</h1>
+            <div class="outer" ref="outerWrappers">
+                <div class="inner" ref="innerWrappers">
+                    <div class="slide-img">
+                        <img :src="slide.slideImg" :alt="slide.slideTitle">
                     </div>
-                    <div class="slide-description">
-                        <p>{{ slide.slideDescription }}</p>
+                    <div class="slide-header">
+                        <div class="slide-title">
+                            <h1>{{ slide.slideTitle }}</h1>
+                        </div>
+                        <div class="slide-description">
+                            <p>{{ slide.slideDescription }}</p>
+                        </div>
+                        <div class="slide-link">
+                            <a :href="slide.slideUrl">View Project</a>
+                        </div>
                     </div>
-                    <div class="slide-link">
-                        <a :href="slide.slideUrl">View Project</a>
-                    </div>
-                </div>
-                <div class="slide-info">
-                    <div class="slide-tags" v-for="(tag, index) in slide.slideTags" :key="index">
-                        <p>{{ tag }}</p>
-                    </div>
-                    <div class="slide-index-wrapper">
-                        <p id="slide-index">{{ (index + 1).toString().padStart(2, '0') }}</p>
-                        <p>/</p>
-                        <p id="total-slide-count">{{ slides.length.toString().padStart(2, '0') }}</p>
+                    <div class="slide-info">
+                        <div class="slide-tags" v-for="(tag, index) in slide.slideTags" :key="index">
+                            <p>{{ tag }}</p>
+                        </div>
+                        <div class="slide-index-wrapper">
+                            <p id="slide-index">{{ (index + 1).toString().padStart(2, '0') }}</p>
+                            <p>/</p>
+                            <p id="total-slide-count">{{ slides.length.toString().padStart(2, '0') }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,14 +85,20 @@ const slides = ref([
     }
 ]);
 const sections = ref([]);
+const outerWrappers = ref([]);
+const innerWrappers = ref([]);
 
+const observer = ref(null);
 const currentIndex = ref(-1);
 const isAnimating = ref(false)
 
 onMounted(() => {
     gsap.registerPlugin(SplitText, Observer);
 
-    Observer.create({
+    gsap.set(outerWrappers.value, { yPercent: 100 });
+    gsap.set(innerWrappers.value, { yPercent: -100 });
+
+    observer.value = Observer.create({
         type: "wheel,touch,pointer",
         wheelSpeed: -1,
         onDown: () => !isAnimating.value && gotoSection(currentIndex.value - 1, -1),
@@ -103,19 +111,24 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    observerInstance?.kill();
+    if (observer.value) {
+        observer.value.kill();
+        observer.value = null;
+    }
+
+    currentIndex.value = -1;
+    isAnimating.value = false;
 });
 
 function gotoSection(index, direction) {
     const wrap = gsap.utils.wrap(0, sections.value.length);
     index = wrap(index);
     isAnimating.value = true;
-    
+
     const currentSlide = sections.value[currentIndex.value];
     const targetSlide = sections.value[index];
     const currentImg = currentSlide?.querySelector('.slide-img img');
-    const targetImg = targetSlide.querySelector('.slide-img img');
-
+    const targetImg = targetSlide?.querySelector('.slide-img img');
 
     let fromTop = direction === -1,
         dFactor = fromTop ? -1 : 1;
@@ -133,11 +146,15 @@ function gotoSection(index, direction) {
 
     gsap.set(targetSlide, { autoAlpha: 1, zIndex: 1 });
 
-    tl.fromTo(targetImg, { yPercent: 15 * dFactor }, { yPercent: 0 }, 0);
+    tl.fromTo([outerWrappers.value[index], innerWrappers.value[index]], {
+        yPercent: i => i ? -100 * dFactor : 100 * dFactor
+    }, {
+        yPercent: 0,
+    }, 0)
+        .fromTo(targetImg, { yPercent: 15 * dFactor, scale: 0.8 }, { yPercent: 0, scale: 1 }, 0);
 
     currentIndex.value = index;
 }
-
 
 // function splitText(s) {
 //     const slideHeader = s.querySelector('.slide-title h1');
@@ -194,6 +211,13 @@ a {
     height: 100svh;
     background-color: #000;
     overflow: hidden;
+}
+
+.outer,
+.inner {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
 }
 
 .slide,
