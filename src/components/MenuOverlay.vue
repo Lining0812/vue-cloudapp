@@ -168,7 +168,7 @@ p {
     width: 100vw;
     height: 100svh;
     background-color: #0f0f0f;
-    z-index: 1;
+    z-index: 10;
 }
 
 .menu-content {

@@ -1,28 +1,30 @@
 <template>
     <div class="concert_slide">
         <div class="slide" v-for="(slide, index) in slides" :key="index" ref="sections">
-            <div class="slide-img">
-                <img :src="slide.slideImg" :alt="slide.slideTitle">
-            </div>
-            <div class="slide-header">
-                <div class="slide-title">
-                    <h1>{{ slide.slideTitle }}</h1>
+            <div class="outer">
+                <div class="slide-img">
+                    <img :src="slide.slideImg" :alt="slide.slideTitle">
                 </div>
-                <div class="slide-description">
-                    <p>{{ slide.slideDescription }}</p>
+                <div class="slide-header">
+                    <div class="slide-title">
+                        <h1>{{ slide.slideTitle }}</h1>
+                    </div>
+                    <div class="slide-description">
+                        <p>{{ slide.slideDescription }}</p>
+                    </div>
+                    <div class="slide-link">
+                        <a :href="slide.slideUrl">View Project</a>
+                    </div>
                 </div>
-                <div class="slide-link">
-                    <a :href="slide.slideUrl">View Project</a>
-                </div>
-            </div>
-            <div class="slide-info">
-                <div class="slide-tags" v-for="(tag, index) in slide.slideTags" :key="index">
-                    <p>{{ tag }}</p>
-                </div>
-                <div class="slide-index-wrapper">
-                    <p id="slide-index">{{ (index + 1).toString().padStart(2, '0') }}</p>
-                    <p>/</p>
-                    <p id="total-slide-count">{{ slides.length.toString().padStart(2, '0') }}</p>
+                <div class="slide-info">
+                    <div class="slide-tags" v-for="(tag, index) in slide.slideTags" :key="index">
+                        <p>{{ tag }}</p>
+                    </div>
+                    <div class="slide-index-wrapper">
+                        <p id="slide-index">{{ (index + 1).toString().padStart(2, '0') }}</p>
+                        <p>/</p>
+                        <p id="total-slide-count">{{ slides.length.toString().padStart(2, '0') }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,10 +32,11 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onUnmounted } from 'vue';
 
 import gsap from 'gsap';
 import SplitText from 'gsap/SplitText';
+import Observer from 'gsap/Observer';
 
 const slides = ref([
     {
@@ -79,34 +82,82 @@ const slides = ref([
         slideImg: 'src/assets/images/T6.jpg',
     }
 ]);
-const sections = ref(null);
+const sections = ref([]);
+
+const currentIndex = ref(-1);
+const isAnimating = ref(false)
 
 onMounted(() => {
-    gsap.registerPlugin(SplitText);
+    gsap.registerPlugin(SplitText, Observer);
 
-    console.log(sections.value.length)
-})
-
-function splitText(s) {
-    const slideHeader = s.querySelector('.slide-title h1');
-    if (slideHeader) {
-        SplitText.create(slideHeader, {
-            type: 'words',
-            wordsClass: 'word',
-            mask: 'words',
-        });
-    };
-    const slideContent = s.querySelectorAll('p,a');
-    slideContent.forEach((element) => {
-        SplitText.create(element, {
-            type: 'lines',
-            linesClass: 'line',
-            mask: 'lines',
-            reduceWhiteSpace: false,
-        });
+    Observer.create({
+        type: "wheel,touch,pointer",
+        wheelSpeed: -1,
+        onDown: () => !isAnimating.value && gotoSection(currentIndex.value - 1, -1),
+        onUp: () => !isAnimating.value && gotoSection(currentIndex.value + 1, 1),
+        tolerance: 10,
+        preventDefault: true
     });
-};
 
+    gotoSection(0, 1);
+});
+
+onUnmounted(() => {
+    observerInstance?.kill();
+});
+
+function gotoSection(index, direction) {
+    const wrap = gsap.utils.wrap(0, sections.value.length);
+    index = wrap(index);
+    isAnimating.value = true;
+    
+    const currentSlide = sections.value[currentIndex.value];
+    const targetSlide = sections.value[index];
+    const currentImg = currentSlide?.querySelector('.slide-img img');
+    const targetImg = targetSlide.querySelector('.slide-img img');
+
+
+    let fromTop = direction === -1,
+        dFactor = fromTop ? -1 : 1;
+
+    const tl = gsap.timeline({
+        defaults: { duration: 1.25, ease: 'power1.inOut' },
+        onComplete: () => { isAnimating.value = false; console.log(currentIndex.value) },
+    });
+
+    if (currentIndex.value >= 0) {
+        gsap.set(currentSlide, { zIndex: 0 });
+        tl.to(currentImg, { yPercent: -15 * dFactor })
+            .set(currentSlide, { autoAlpha: 0 });
+    }
+
+    gsap.set(targetSlide, { autoAlpha: 1, zIndex: 1 });
+
+    tl.fromTo(targetImg, { yPercent: 15 * dFactor }, { yPercent: 0 }, 0);
+
+    currentIndex.value = index;
+}
+
+
+// function splitText(s) {
+//     const slideHeader = s.querySelector('.slide-title h1');
+//     if (slideHeader) {
+//         SplitText.create(slideHeader, {
+//             type: 'words',
+//             wordsClass: 'word',
+//             mask: 'words',
+//         });
+//     };
+//     const slideContent = s.querySelectorAll('p,a');
+//     slideContent.forEach((element) => {
+//         SplitText.create(element, {
+//             type: 'lines',
+//             linesClass: 'line',
+//             mask: 'lines',
+//             reduceWhiteSpace: false,
+//         });
+//     });
+// };
 </script>
 
 <style scoped>
