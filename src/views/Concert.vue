@@ -140,7 +140,7 @@ function gotoSection(index, direction) {
 
     if (currentIndex.value >= 0) {
         gsap.set(currentSlide, { zIndex: 0 });
-        tl.to(currentImg, { yPercent: -15 * dFactor })
+        tl.to(currentImg, { yPercent: -15 * dFactor, scale: 0.9 })
             .set(currentSlide, { autoAlpha: 0 });
     }
 
@@ -151,7 +151,7 @@ function gotoSection(index, direction) {
     }, {
         yPercent: 0,
     }, 0)
-        .fromTo(targetImg, { yPercent: 15 * dFactor, scale: 0.8 }, { yPercent: 0, scale: 1 }, 0);
+        .fromTo(targetImg, { yPercent: 15 * dFactor, scale: 0.9 }, { yPercent: 0, scale: 1 }, 0);
 
     currentIndex.value = index;
 }
