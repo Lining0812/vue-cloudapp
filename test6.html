@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,250 +8,327 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <style>
-        @font-face {
-            font-family: 'myFont';
-            src: url(./src/fonts/Kingnammm_Maiyuan_II-Regular.ttf);
-        }
-
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html,body{
-            width: 100%;
-            height: 800vh;
-            font-family: "myFont";
-            font-weight: normal;
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
         }
 
-        img{
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        h1{
-            text-transform: uppercase;
-            font-weight: 600;
-            font-size: 80px;
-            line-height: 1;
-        }
-
-        h1 span{
-            color: tomato;
-        }
-
-        p{
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        section{
-            position: relative;
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .hero,.outro{
+            padding: 2rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            background-color: #000;
-            color: #fff;
-        }
-
-        .hero h1,.outro h1{
-            text-align: center;
-            font-size: 70px;
-        }
-
-        .bg-img{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        canvas{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 150%;
-            height: 150%;
-        }
-
-        canvas.outline-layer{
-            z-index: 1;
-        }
-
-        canvas.fill-layer{
-            z-index: 10;
-        }
-
-        .cards{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 300%;
-            height: 100vh;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            will-change: transform;
             z-index: 2;
         }
 
-        .card{
-            position: relative;
-            width: 10%;
-            height: 75%;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            padding: 1.5em;
+        p#logo {
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
-        .card-img,.card-title{
-            flex: 1;
+        button {
+            border: none;
+            outline: none;
+            font-weight: 500;
+            color: #000;
+            padding: 0.75em 1em;
+            background-color: #fff;
+            border-radius: 0.25em;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
             overflow: hidden;
         }
 
-        .card-title{
-            color: #fff;
+        .intro {
+            background: url('./src/assets/images/T6.jpg') no-repeat 50% 50%;
+            background-size: cover;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
         }
 
-        @media(max-width:900px){
-            .card{
-                width: 25%;
-            }
+        .intro h1 {
+            width: 75%;
+            text-align: center;
+            color: #fff;
+            font-size: 100px;
+            font-weight: 700;
+            line-height: 1.125;
+        }
+
+        .outro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: 200% 200%;
+        }
+
+        .outro p {
+            width: 75%;
+            text-align: center;
+            color: #fff;
+            font-size: 52px;
+            font-weight: 400;
+            line-height: 1.125;
+        }
+
+        .outro p span {
+            color: #75e1ff;
+        }
+
+        .cards {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150vw;
+            height: 600px;
+            will-change: transform;
+        }
+
+        .card {
+            position: absolute;
+            width: 500px;
+            height: 550px;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            margin-left: -250px;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            will-change: transform;
+        }
+
+        .card-img {
+            flex: 1;
+            border-radius: 0.5em;
+            overflow: hidden;
+        }
+
+        .card-content {
+            width: 100%;
+            height: 60px;
+        }
+
+        .card-content p {
+            text-align: left;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+
+        .step-counter {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            margin: 2em;
+        }
+
+        .counter-title,
+        .count {
+            position: relative;
+            width: 1200px;
+            height: 150px;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            overflow: hidden;
+        }
+
+        .count {
+            top: -10px;
+        }
+
+        .count-container {
+            position: relative;
+            transform: translate(150px);
+            will-change: transform;
+        }
+
+        .step-counter h1 {
+            width: 100%;
+            position: relative;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 150px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            will-change: transform;
+        }
+
+        .empty {
+            opacity: 0;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <section class="hero">
-            <h1>宇宙无敌！<span>黄霄雲</span>！！！</h1>
-        </section>
-
-        <section class="sticky">
-            <div class="bg-img"><img src="./src/assets/T1.jpg" alt=""></div>
-
-            <canvas class="outline-layer"></canvas>
-
-            <div class="cards">
-                <div class="card">
-                    <div class="card-img"><img src="./src/assets/T3.jpg" alt=""></div>
-                    <div class="card-title">
-                        <h1>Ghost Huang</h1>
-                        <p>17B331</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img"><img src="./src/assets/T4.jpg" alt=""></div>
-                    <div class="card-title">
-                        <h1>Slient Weil</h1>
-                        <p>PROD8372</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img"><img src="./src/assets/T5.jpg" alt=""></div>
-                    <div class="card-title">
-                        <h1>Slient Weil</h1>
-                        <p>PROD8372</p>
-                    </div>
-                </div>
-            </div>
-
-            <canvas class="fill-layer"></canvas>
-        </section>
-
-        <section class="outro">
-            <h1>Chase the Shadows to embrace the Light</h1>
-        </section>
+        <nav>
+            <p id="logo">Voxel</p>
+            <button>Download Now</button>
+        </nav>
     </div>
 
+    <section class="intro">
+        <h1>专辑专辑单曲单曲</h1>
+    </section>
+
+    <section class="steps">
+        <div class="step-counter">
+            <div class="counter-title">
+                <h1>专辑|Album</h1>
+            </div>
+            <!-- <div class="count">
+                <div class="count-container">
+                    <h1>01</h1>
+                    <h1>02</h1>
+                    <h1>03</h1>
+                    <h1>04</h1>
+                    <h1>05</h1>
+                </div>
+            </div> -->
+        </div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T1.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>肥鹰卤果</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T2.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>没语季节</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T3.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>打开</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T4.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>Oracle</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T5.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>淬炼</p>
+                </div>
+            </div>
+            <div class="card-empty"></div>
+            <div class="card-empty"></div>
+        </div>
+    </section>
+
+    <section class="outro">
+        <P>This is <span>outro</span> content</P>
+    </section>
+
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const stickySection = document.querySelector('.steps');
+            const stickyHeight = window.innerHeight * 7;
+            const cards = document.querySelectorAll('.card');
+            const countContainer = document.querySelector('.count-container');
+            const totalCards = cards.length;
+
+            ScrollTrigger.create({
+                trigger: stickySection,
+                start: 'top top',
+                end: `+=${stickyHeight}px`,
+                pin: true,
+                pinSpacing: true,
+                scrub:1,
+                onUpdate: (self) => {
+                    positionCards(self.progress);
+                },
+            });
+
+            const getRadius = () => {
+                return window.innerWidth < 900 ? window.innerHeight * 7.5 : window.innerWidth * 2.5;
+            };
+
+            const arcAngle = Math.PI * 0.4;
+            const startAngle = Math.PI / 2 - arcAngle / 2;
+
+            function positionCards(progress = 0) {
+                const radius = getRadius();
+                const totalTravel = 1 + totalCards / 7.5;
+                const adjustedprogress = (progress * totalTravel - 1) * 0.75;
+
+                cards.forEach((card, i) => {
+                    const noramlizedProgress = (totalCards - 1 - i) / totalCards;
+                    const cardProgress = noramlizedProgress + adjustedprogress;
+                    const angle = startAngle + arcAngle * cardProgress;
+
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    const rotation = (angle - Math.PI / 2) * (180 / Math.PI);
+
+                    gsap.set(card, {
+                        x: x,
+                        y: -y + radius,
+                        rotation: -rotation,
+                        transformOrigin: "center center",
+                    })
+                });
+            }
+
+            positionCards(0);
+        })
+    </script>
+
+    <!-- <script>
         document.addEventListener('DOMContentLoaded',()=>{
             gsap.registerPlugin(ScrollTrigger);
 
-            const stickySection = document.querySelector('.sticky');
-            const stickyHeight = window.innerHeight * 5;
-            const outlineCanvas = document.querySelector('.outline-layer');
-            const fillCanvas = document.querySelector('.fill-layer');
-            const outlineCtx = outlineCanvas.getContext('2d');
-            const fillCtx = fillCanvas.getContext('2d');
+            const cards = document.querySelectorAll('.card');
 
-            function setCanvasSize(canvas,ctx){
-                const dpr = window.devicePixelRatio || 1;
-                canvas.width = window.innerWidth * dpr;
-                canvas.height = window.innerHeight * dpr;
-                canvas.style.width = `${window.innerWidth}px`;
-                canvas.style.height = `${window.innerHeight}`;
-                ctx.scale(dpr,dpr);
-            }
 
-            setCanvasSize(outlineCanvas,outlineCtx);
-            setCanvasSize(fillCanvas,fillCtx);
 
-            const triangleSize = 150;
-            const linewidth = 1;
-            const scale_threshold = 0.01;
-            const triangleStates = new Map();
-            let animationFrameId = null;
-            let canvasXPosition = 0;
-            
-            function drawTriangle(ctx,x,y,fillscale = 0,flipped = false){
-                const halfSize = triangleSize / 2;
-                if (flipped < scale_threshold){
-                    ctx.beginPath();
-                    if(!flipped){
-                        ctx.moveTo(x,y - halfSize);
-                        ctx.lineTo(x + halfSize,y + halfSize);
-                        ctx.lineTo(x - halfSize,y + halfSize);
-                    } else {
-                        ctx.moveTo(x,y + halfSize);
-                        ctx.lineTo(x + halfSize,y - halfSize);
-                        ctx.lineTo(x - halfSize,y - halfSize);
-                    }
-                    ctx.closePath();
-                    ctx.strokeStyle = 'rgba(255,255,255,0.075)';
-                    ctx.linewidth = linewidth;
-                    ctx.stroke();
-                }
-                if(flipped >= scale_threshold){
-                    ctx.save();
-                    ctx.translate(x,y);
-                    ctx.scale(fillscale,fillscale);
-                    ctx.translate(-x,-y);
-
-                    ctx.beginPath();
-                    if(!flipped){
-                        ctx.moveTo(x,y - halfSize);
-                        ctx.lineTo(x + halfSize,y + halfSize);
-                        ctx.lineTo(x - halfSize,y + halfSize);
-                    } else {
-                        ctx.moveTo(x,y + halfSize);
-                        ctx.lineTo(x + halfSize,y - halfSize);
-                        ctx.lineTo(x - halfSize,y - halfSize);
-                    }
-                    ctx.closePath();
-                    ctx.fillStyle = '#ff6b00';
-                    ctx.strokeStyle = '#ff6b00';
-                    ctx.linewidth = linewidth;
-                    ctx.stroke();
-                    ctx.fill();
-                    ctx.restore();
-                }
-            }
         })
-    </script>
+    </script> -->
 </body>
+
 </html>

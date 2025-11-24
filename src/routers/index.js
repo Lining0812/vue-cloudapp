@@ -8,9 +8,9 @@ const routes = [
                 component:()=>import('@/views/Home.vue'),
             },
             {
-                name:"albumlist",
-                path:'/albums', // http://localhost:5173/albums
-                component:()=>import('@/views/AlbumList.vue'),
+                name:"album",
+                path:'/album', // http://localhost:5173/album
+                component:()=>import('@/views/Album.vue'),
             },
             {
                 name:"albuminfo",
@@ -24,9 +24,9 @@ const routes = [
                 component:()=>import('@/views/Concert.vue'),
             },
             {
-                name:'origins',
-                path:'/origins', // http://localhost:5173/origins
-                component:()=>import('@/views/Origins.vue'),
+                name:'origin',
+                path:'/origins', // http://localhost:5173/origin
+                component:()=>import('@/views/Origin.vue'),
             },
             {
                 name:'test',
