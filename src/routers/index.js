@@ -24,9 +24,9 @@ const routes = [
                 component:()=>import('@/views/Concert.vue'),
             },
             {
-                name:'origins',
-                path:'/origins', // http://localhost:5173/origins
-                component:()=>import('@/views/Origins.vue'),
+                name:'origin',
+                path:'/origins', // http://localhost:5173/origin
+                component:()=>import('@/views/Origin.vue'),
             },
             {
                 name:'test',
