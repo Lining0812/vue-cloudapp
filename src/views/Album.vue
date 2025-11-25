@@ -140,7 +140,7 @@ onMounted(() => {
             y: () => Math.sin(startAngle) * radius * -1 + radius,
             rotation: (startAngle - Math.PI / 2) * (180 / Math.PI) * -1,
             transformOrigin: 'center center',
-            duration: 3
+            duration: 2
         },).to(card, {
             x: 0,
             y: 0,
@@ -151,8 +151,8 @@ onMounted(() => {
             y: () => Math.sin(endAngle) * radius * -1 + radius,
             rotation: (endAngle - Math.PI / 2) * (180 / Math.PI) * -1,
             transformOrigin: 'center center',
-            duration: 3,
-        },)
+            duration: 2,
+        },'<')
     });
 }
 )
