@@ -293,7 +293,7 @@
             const startAngle = Math.PI / 2 - arcAngle / 2; // 起始角度（弧度）
 
             function positionCards(progress = 0) {
-                const radius = getRadius();
+                const radius = getRadius(); // 半径
                 const totalTravel = 1 + totalCards / 7.5;
                 const adjustedprogress = (progress * totalTravel - 1) * 0.75;
 

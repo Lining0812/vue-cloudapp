@@ -1,11 +1,4 @@
 <template>
-    <div class="container">
-        <nav>
-            <p id="logo">Voxel</p>
-            <button>Download Now</button>
-        </nav>
-    </div>
-
     <section class="intro">
         <h1>专辑专辑单曲单曲</h1>
     </section>
@@ -66,8 +59,46 @@
                     <p>淬炼</p>
                 </div>
             </div>
-            <div class="card-empty"></div>
-            <div class="card-empty"></div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T1.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>肥鹰卤果</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T2.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>没语季节</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T3.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>打开</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T4.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>Oracle</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="/src/assets/images/T5.jpg" alt="aaa">
+                </div>
+                <div class="card-content">
+                    <p>淬炼</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -77,7 +108,6 @@
 </template>
 
 <script setup>
-import AlbumCard from '@/components/AlbumCard.vue'
 
 import { onMounted, ref } from 'vue'
 
@@ -112,48 +142,40 @@ onMounted(() => {
     const cardlst = gsap.utils.toArray(cards.value.querySelectorAll('.card'));
     const tl = gsap.timeline();
 
-    // cardlst.forEach((card, i) => {
-    //     tl.fromTo(card, {
-    //         x: () => Math.cos(startAngle) * radius,
-    //         y: () => Math.sin(startAngle) * radius * -1 + radius,
-    //         rotation: (startAngle - Math.PI / 2) * (180 / Math.PI) * -1,
-    //         transformOrigin: 'center center',
-    //         duration:3
-    //     }, {
-    //         x: 0,
-    //         y: 0,
-    //         rotation: 0,
-    //         transformOrigin: 'center center',
-    //         duration: 2,
-    //     }).to(card, {
-    //         x: () => Math.cos(endAngle) * radius,
-    //         y: () => Math.sin(endAngle) * radius * -1 + radius,
-    //         rotation: (endAngle - Math.PI / 2) * (180 / Math.PI) * -1,
-    //         transformOrigin: 'center center',
-    //         duration: 3,
-    //     })
-    // });
-
     cardlst.forEach((card, i) => {
-        tl.from(card, {
+        const cardtl = gsap.timeline();
+        cardtl.from(card, {
             x: () => Math.cos(startAngle) * radius,
             y: () => Math.sin(startAngle) * radius * -1 + radius,
             rotation: (startAngle - Math.PI / 2) * (180 / Math.PI) * -1,
             transformOrigin: 'center center',
-            duration: 2
+            duration: 4,
         },).to(card, {
             x: 0,
             y: 0,
             rotation: 0,
+            duration: 0,
             transformOrigin: 'center center',
         },).to(card, {
             x: () => Math.cos(endAngle) * radius,
             y: () => Math.sin(endAngle) * radius * -1 + radius,
             rotation: (endAngle - Math.PI / 2) * (180 / Math.PI) * -1,
             transformOrigin: 'center center',
-            duration: 2,
-        })
+            duration: 4,
+        });
+        tl.add(cardtl, 2 * i);
     });
+
+    ScrollTrigger.create({
+        trigger: '.steps',
+        start: 'top top',
+        // end:`+=${window.innerHeight * 7}px`,
+        end: '+=500%',
+        pin: true,
+        pinSpacing: true,
+        scrub: 1,
+        animation: tl,
+    })
 }
 )
 const getRadius = () => {
@@ -161,52 +183,11 @@ const getRadius = () => {
 };
 </script>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;
-    color: #fff;
-}
-
+<style scoped>
 img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-}
-
-p#logo {
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-button {
-    border: none;
-    outline: none;
-    font-weight: 500;
-    color: #000;
-    padding: 0.75em 1em;
-    background-color: #fff;
-    border-radius: 0.25em;
 }
 
 section {
@@ -255,7 +236,7 @@ section {
 
 .cards {
     position: absolute;
-    top: 25%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 150vw;
@@ -332,9 +313,5 @@ section {
     line-height: 1;
     letter-spacing: -0.04em;
     will-change: transform;
-}
-
-.empty {
-    opacity: 0;
 }
 </style>
