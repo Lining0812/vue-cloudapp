@@ -152,7 +152,7 @@ onMounted(() => {
             rotation: (endAngle - Math.PI / 2) * (180 / Math.PI) * -1,
             transformOrigin: 'center center',
             duration: 2,
-        },'<')
+        })
     });
 }
 )
