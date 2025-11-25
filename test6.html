@@ -289,8 +289,8 @@
                 return window.innerWidth < 900 ? window.innerHeight * 7.5 : window.innerWidth * 2.5;
             };
 
-            const arcAngle = Math.PI * 0.4;
-            const startAngle = Math.PI / 2 - arcAngle / 2;
+            const arcAngle = Math.PI * 0.4; // 总角度（弧度）
+            const startAngle = Math.PI / 2 - arcAngle / 2; // 起始角度（弧度）
 
             function positionCards(progress = 0) {
                 const radius = getRadius();
@@ -324,9 +324,6 @@
             gsap.registerPlugin(ScrollTrigger);
 
             const cards = document.querySelectorAll('.card');
-
-
-
         })
     </script> -->
 </body>
