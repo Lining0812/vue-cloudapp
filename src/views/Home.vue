@@ -37,13 +37,12 @@ onMounted(() => {
 .intro {
     width: 100%;
     height: 100vh;
-    background-color: palevioletred;
+    background-color: tomato;
 }
 
 .container {
     width: 100%;
     height: 100vh;
-    background-color: tomato;
     overflow: hidden;
 }
 

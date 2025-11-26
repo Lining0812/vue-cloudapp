@@ -144,33 +144,31 @@ onMounted(() => {
 
     cardlst.forEach((card, i) => {
         const cardtl = gsap.timeline();
-        cardtl.from(card, {
+        cardtl.fromTo(card, {
             x: () => Math.cos(startAngle) * radius,
             y: () => Math.sin(startAngle) * radius * -1 + radius,
             rotation: (startAngle - Math.PI / 2) * (180 / Math.PI) * -1,
             transformOrigin: 'center center',
-            duration: 4,
-        },).to(card, {
+        }, {
             x: 0,
             y: 0,
             rotation: 0,
-            duration: 0,
-            transformOrigin: 'center center',
-        },).to(card, {
+            duration: 4,
+        }).to(card, {
             x: () => Math.cos(endAngle) * radius,
             y: () => Math.sin(endAngle) * radius * -1 + radius,
             rotation: (endAngle - Math.PI / 2) * (180 / Math.PI) * -1,
             transformOrigin: 'center center',
             duration: 4,
         });
-        tl.add(cardtl, 2 * i);
+        tl.add(cardtl, 2. * i);
     });
 
     ScrollTrigger.create({
         trigger: '.steps',
         start: 'top top',
         // end:`+=${window.innerHeight * 7}px`,
-        end: '+=500%',
+        end: '+=600%',
         pin: true,
         pinSpacing: true,
         scrub: 1,
@@ -218,7 +216,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: 200% 200%;
+    background-color: tomato;
 }
 
 .outro p {
