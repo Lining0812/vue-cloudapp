@@ -4,9 +4,8 @@
         <p>AAAA</p>
     </div> -->
     <div class="container">
-        <div class="wrapper">
-            <div class="box">1</div>
-        </div>
+        <div class="box a">1</div>
+        <div class="box" style="position: absolute;background-color:blueviolet;">2</div>
     </div>
 </template>
 
@@ -14,16 +13,16 @@
 import gsap from 'gsap';
 import { onMounted } from 'vue';
 
-onMounted(()=>{
+onMounted(() => {
 
-    gsap.fromTo('.wrapper', { 
+    gsap.fromTo('.a', {
         rotation: 45,
-        transformOrigin: "bottom",
-        duration: 3 
-    },{
+        transformOrigin: "bottom -100",
+        duration: 3
+    }, {
         rotation: -45,
-        transformOrigin: "bottom",
-        duration: 3 
+        transformOrigin: "bottom -100",
+        duration: 3
     })
 })
 
@@ -37,12 +36,6 @@ onMounted(()=>{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.wrapper{
-    background-color: blue;
-    width: 200px;
-    height: 500px;
 }
 
 .box {
