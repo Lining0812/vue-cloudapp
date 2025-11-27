@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .panel{
+            width: 100%;
+            height: 100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5bcff;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>One</h1>
+    </div>
+    <div class="panel">
+        <h1>Two</h1>
+    </div>
+    <div class="panel">
+        <h1>Three</h1>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const panelcolor = ['#f5e6dc','#dcf2f5','#f5bcff'];
+        const panels = gsap.utils.toArray('.panel');
+
+        panels.forEach((panel,index) => {
+            gsap.set(panel,{backgroundColor:panelcolor[index]});
+            ScrollTrigger.create({
+                trigger:panel,
+                start:'top top',
+                // markers:true,
+                pin:true,
+                pinSpacing:false,
+                animation:gsap.to(panel,{autoAlpha:0}),
+                toggleActions:'play none none reverse',
+            })
+        });
+
+    </script>
+</body>
+</html>
