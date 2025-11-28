@@ -3,27 +3,53 @@
         <h1 style="text-align: center;">起源</h1>
         <p>AAAA</p>
     </div> -->
-    <div class="container">
-        <div class="box a">1</div>
-        <div class="box" style="position: absolute;background-color:blueviolet;">2</div>
+    <div class="panel" style="background-color: aquamarine;" ref="p1">
+        <h1>One</h1>
+    </div>
+    <div class="panel" style="background-color: blueviolet;" ref="p2">
+        <h1>Two</h1>
+    </div>
+    <div class="panel" style="background-color: brown;" ref="p3">
+        <h1>Three</h1>
     </div>
 </template>
 
 <script setup>
 import gsap from 'gsap';
-import { onMounted } from 'vue';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { onMounted, ref } from 'vue';
+
+const p1 = ref(null);
+const p2 = ref(null);
+const p3 = ref(null);
 
 onMounted(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo('.a', {
-        rotation: 45,
-        transformOrigin: "bottom -100",
-        duration: 3
-    }, {
-        rotation: -45,
-        transformOrigin: "bottom -100",
-        duration: 3
-    })
+    ScrollTrigger.create({
+        trigger: p1.value,
+        start: 'top top',
+        markers: true,
+        pin: true,
+        pinSpacing: false,
+        onEnter:()=>console.log("start1")
+    });
+    ScrollTrigger.create({
+        trigger: p2.value,
+        start: 'top top',
+        markers: true,
+        pin: true,
+        pinSpacing: false,
+        onEnter:()=>console.log("start2")
+    });
+    ScrollTrigger.create({
+        trigger: p3.value,
+        start: 'top top',
+        markers: true,
+        pin: true,
+        pinSpacing: false,
+        onEnter:()=>console.log("start3")
+    });
 })
 
 </script>
@@ -38,14 +64,13 @@ onMounted(() => {
     align-items: center;
 }
 
-.box {
-    width: 200px;
-    height: 200px;
-    background-color: aquamarine;
+.panel {
+    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f5bcff;
     color: black;
-    font-size: 48px;
 }
 </style>
