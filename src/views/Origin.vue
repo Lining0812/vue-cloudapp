@@ -32,7 +32,7 @@ onMounted(() => {
         markers: true,
         pin: true,
         pinSpacing: false,
-        onEnter:()=>console.log("start1")
+        onEnter: () => console.log("start1")
     });
     ScrollTrigger.create({
         trigger: p2.value,
@@ -40,18 +40,17 @@ onMounted(() => {
         markers: true,
         pin: true,
         pinSpacing: false,
-        onEnter:()=>console.log("start2")
+        onEnter: () => console.log("start2")
     });
     ScrollTrigger.create({
         trigger: p3.value,
         start: 'top top',
         markers: true,
         pin: true,
-        pinSpacing: false,
-        onEnter:()=>console.log("start3")
+        // pinSpacing: false,
+        onEnter: () => console.log("start3")
     });
 })
-
 </script>
 
 <style scoped>
