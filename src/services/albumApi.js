@@ -40,10 +40,16 @@ export default {
             return { data: null, error: errorMessage };
         }
     },
-    // 根据id获取专辑
-    async getTracksByAlbumId(id) {
-        const response = await apiClient.get(`/api/Track/GetTracksByAlbumId/${id}`);
-        return response.data;
+    // 获取所有曲目
+    async getAllTracks() {
+        try {
+            // const response = await apiClient.get(`/api/Track/GetTracksByAlbumId/${id}`);
+            const response = await apiClient.get(`/api/Track/GetAllTracks`);
+            return response.data;
+        } catch (error) {
+            const errorMessage = handleApiError(error, "获取曲目列表失败");
+            return { data: null, error: errorMessage };
+        }
     },
     // 新增专辑
     async addAlbum(albumData) {
