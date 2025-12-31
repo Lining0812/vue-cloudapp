@@ -47,8 +47,8 @@ const routes = [
     { name: "album", title: "专辑|Album", image: "/src/assets/images/T2.jpg" },
     { name: "concert", title: "演唱会|Concert", image: "/src/assets/images/T3.jpg" },
     { name: "origin", title: "起源|Origin", image: "/src/assets/images/T4.jpg" },
-    { name: "test", title: "测试|test", image: "/src/assets/images/T5.jpg" },
-    { name: "testupload", title: "testupload", image: "/src/assets/images/T2.jpg" },
+    { name: "testget", title: "TestGet", image: "/src/assets/images/T5.jpg" },
+    { name: "testupload", title: "TestUpload", image: "/src/assets/images/T2.jpg" },
 ];
 
 const socials = [

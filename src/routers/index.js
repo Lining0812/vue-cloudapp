@@ -1,6 +1,6 @@
 import { createRouter,createWebHistory } from 'vue-router'
 
-// 配置路由和视图的对应关系
+// 配置路由和视图的对应关系(同时修改导航组件配置)
 const routes = [
             {
                 name:"home",
@@ -29,9 +29,9 @@ const routes = [
                 component:()=>import('@/views/Origin.vue'),
             },
             {
-                name:'test',
-                path:'/test', // http://localhost:5173/test
-                component:()=>import('@/views/Test.vue'),
+                name:'testget',
+                path:'/testget', // http://localhost:5173/testget
+                component:()=>import('@/views/TestGet.vue'),
             },
             {
                 name:'testupload',
