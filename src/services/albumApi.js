@@ -7,9 +7,9 @@ export default {
             const formData = new FormData();
             formData.append('Title', album.title);
             formData.append('Artist', album.artist);
-            formData.append('ReleaseDate', albumData.releaseDate);
-            formData.append('Description', albumData.description);
-            formData.append('CoverImage', albumData.coverImage);
+            formData.append('ReleaseDate', album.releaseDate);
+            formData.append('Description', album.description);
+            formData.append('CoverImage', album.coverImage);
             const response = await uploadClient.post(apiurl.album_add, formData);
             return { data: response.data, error: null };
         }

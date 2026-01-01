@@ -1,123 +1,74 @@
 <template>
   <form @submit.prevent="handleSubmit" enctype="multipart/form-data">
     <div v-for="field in formFields" :key="field.id" class="form-group">
-      <label :for="field.id">{{ field.label }}：</label>
-
+      <label :for="field.id">{{ field.label }}<span v-if="field.required" class="required">*</span></label>
       <input v-if="field.type !== 'file'" 
-             :type="field.type" 
-             :id="field.id" 
-             :name="field.name" 
-             :placeholder="field.placeholder"
-             v-model="formData[field.modelKey]">
-      <!-- 文件类型使用v-model:file或@change事件 -->
-      <input v-else 
-             type="file" 
-             :id="field.id" 
-             :name="field.name" 
-             :placeholder="field.placeholder"
-             @change="handleFileChange($event, field.modelKey)">
+      :type="field.type" 
+      :id="field.id" 
+      :name="field.name"
+      :placeholder="field.placeholder" 
+      :required="field.required" 
+      v-model="formData[field.name]">
 
+      <!-- 文件类型使用@change事件处理 -->
+      <input v-else 
+      type="file" 
+      :id="field.id" 
+      :name="field.name" 
+      :placeholder="field.placeholder"
+      :required="field.required"
+      :accept="field.accept"
+      @change="handleFileChange($event, field.name)">
     </div>
-    <button type="submit" id="submitbtn">{{ submitButtonText }}</button>
-    <button type="button" @click="resetForm">{{ resetButtonText }}</button>
+    <button type="submit" id="submitbtn">提交</button>
+    <button type="button" @click="resetForm">重置</button>
   </form>
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue';
+import { ref, reactive } from 'vue';
+import albumApi from '@/services/albumApi';
 
-// 定义props，支持动态配置
 const props = defineProps({
-  // 表单字段配置数组
-  formFields: {
-    type: Array,
-    required: true,
-    default: () => []
+  fields:{
+    type:Object,
+    required:true
   },
-  // 提交按钮文本
-  submitButtonText: {
-    type: String,
-    default: '提交'
-  },
-  // 重置按钮文本
-  resetButtonText: {
-    type: String,
-    default: '重置'
-  },
-  // 初始表单数据
-  initialFormData: {
-    type: Object,
-    default: () => {}
-  }
 });
 
-// 定义事件
-const emit = defineEmits(['submit', 'reset', 'fileChange']);
-
-// 动态生成表单数据
+const formFields = ref(Object.values(props.fields));
 const formData = reactive({});
 
-// 初始化表单数据
-const initFormData = () => {
-  // 清空现有数据
-  Object.keys(formData).forEach(key => delete formData[key]);
-  
-  // 根据formFields初始化数据
-  props.formFields.forEach(field => {
-    // 设置默认值
-    let defaultValue = '';
-    if (field.type === 'date') {
-      // 如果是日期类型，默认使用当前日期
-      const date = new Date();
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      defaultValue = `${year}-${month}-${day}`;
-    } else if (field.type === 'file') {
-      // 文件类型默认值为null
-      defaultValue = null;
-    }
-    
-    // 使用初始数据或默认值
-    formData[field.modelKey] = props.initialFormData[field.modelKey] || defaultValue;
-  });
+const handleFileChange = (event, fieldName) => {
+  formData[fieldName] = event.target.files[0];
 };
 
-// 监听formFields变化，重新初始化表单数据
-onMounted(() => {
-  initFormData();
-});
-
-// 处理文件上传
-const handleFileChange = (event, modelKey) => {
-  const file = event.target.files[0];
-  if (file) {
-    formData[modelKey] = file;
-    emit('fileChange', { modelKey, file });
-  }
-};
-
-// 表单提交
-const handleSubmit = async () => {
-  emit('submit', { ...formData });
-};
-
-// 重置表单
 const resetForm = () => {
-  initFormData();
-  
-  // 重置所有文件输入框
-  props.formFields.forEach(field => {
-    if (field.type === 'file') {
-      const fileInput = document.getElementById(field.id);
-      if (fileInput) {
-        fileInput.value = '';
-      }
-    }
+  Object.keys(formData).forEach(key => {
+    delete formData[key];
   });
-  
-  emit('reset', { ...formData });
+  document.querySelectorAll('input[type="file"]').forEach(input => {
+    input.value = '';
+  });
 };
+
+// 处理表单提交
+const handleSubmit = async () => {
+  try {
+    const result = await albumApi.addAlbum(formData);
+    if (result.error) {
+      console.error('添加专辑失败:', result.error);
+      alert('添加专辑失败: ' + result.error);
+    } else {
+      console.log('添加专辑成功:', result.data);
+      alert('添加专辑成功');
+      resetForm();
+    }
+  } catch (error) {
+    console.error('提交表单时发生错误:', error);
+    alert('提交表单时发生错误');
+  }
+}
 </script>
 
 <style scoped>
